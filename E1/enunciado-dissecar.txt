@@ -1,0 +1,142 @@
+
+--------------------
+
+Descrição do domínio
+--------------------
+
+-----
+entidades 
+
+ -> retalhistas de supermercado 
+ -> IVMS
+ -> prateleiras ?
+ -> produtos
+ -> Smart Cabinets ?
+
+
+
+------------
+IVMS - Intelligent Vending Machines 
+------------
+ - são instaladas num ponto de retalho
+ - têm nome p.ex - 'Galp - Oeiras' 
+ - têm morada
+ - têm número de série do fabricante que é único (  - key )
+	 -- 
+	 IVMS 
+		------------
+		- prateleiras
+		------------
+		- têm prateleiras
+		- cada prateleira tem
+			- número de identificação 
+			- largura (cm)
+			- altura  (cm)
+		- três tipos diferentes de  prateleiras 
+			- temperatura ambiente
+			- quente
+			- frio 
+			  - prateleiras frias podem ser discriminadas em
+				- frio positivo
+				- frio negativo
+			
+		
+
+
+		- produtos encontram-se dispostos nas prateleiras.
+		- seguem em plano conhecido como planograma
+		------------
+		planograma 
+		------------
+			- determina relativamente a um produto o seguinte
+				- prateleira onde deve estar
+				- número de frentes visíveis 
+				- número máximo de unidades na prateleira
+
+------------
+produtos 
+------------
+ - têm código de barra númericode 13 dígitos - Código EAN 
+ - têm uma designação textual 
+ - marca ou nome 
+   - pode-se ter unicamente a marca , ou nome, ou mesmo ambos.
+
+
+- produtos flexíveis 
+- produtos rígidos 
+	- há distinção entres estes 
+- embalagem do produto é relevante 
+
+- categoria associada ( identificadas por nome )
+- produto pertence a uma e só uma categoria
+- categoria compostas de outras categorias
+  - relação de hierarquia entre as categorias
+  - super categoria - designação atribuída a categorias compostas por subcategorias
+  - categoria simples 
+
+	 - uma categoria simples só pode fazer parte de uma super categoria. 
+
+	   - p.ex 
+		categoria 
+			A , B , AB , C , D 
+			onde A , B , C e D são categorias simples 
+ 			AB - é formada por A e B, não pode existir uma outra supercategoria que englobe
+			tanto A ou B. ( unicidade ) se ocorre numa supercategoria não pode ocorrer noutra.
+
+
+  - determinar quantas sub categorias existem numa super categoria.
+  - associação de categoria e prateleira
+     - cada categoria possui um tipo de prateleira pré-determinada ( frio positivo, frio negativo, temperatura ambiente, quente ? )
+		p.ex alguns produtos só podem ser colocados em prateleiras frias negativas
+	
+
+
+
+
+------------			
+retalhistas de supermercado
+´------------
+ - um retalhista é responsável (role) pela reposição de produtos nas IVMs.
+ - têm TIN - Tax Identification Number 
+ - têm nome único ( - key )
+ - especialização por categoria específica de produtos de IVMs.
+    - apenas um retalhista é responsável por uma determinada categoria dentro de um IVM.
+
+
+
+    -- funcionalidade --
+ - é necessário manter o histórico de eventos de reabastecimento
+   -- caraterizado 
+		--  momento em que ocorre 
+            --  número de unidades substituídas.
+                -- limitada superiormente pela quantidade definida no planograma 
+		-- registo do retalhista respons´vale 
+
+  -- é necessário garantir que a prateleira esteja 
+	-- limpa 
+	--organizada
+
+------------------------------------------------------------------------------------------------
+
+
+
+
+------------
+Em aberto  --
+------------
+
+-- definir possíveis entidades ? 
+
+-- definir associação entre elas ? 
+
+-- procurar restringir as associações caso possível ?
+
+-- estabelecer as restrições de integridade  ?
+
+
+
+-- definir lista de termos por entender ?
+
+
+
+
