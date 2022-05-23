@@ -7,11 +7,23 @@ Descrição do domínio
 -----
 entidades 
 
- -> retalhistas de supermercado 
- -> IVMS
- -> prateleiras ?
- -> produtos
- -> Smart Cabinets ?
+ -> retalhista de supermercado 
+ -> IVM
+ -> prateleira 
+ -> prateleira quente
+ -> prateleira temperatura ambiente
+ -> prateleira frio
+	-> prateleira frio positivo
+	-> prateleira frio negativo
+ -> produto
+	-> produto rígido  
+	-> produto flexível 
+ -> categoria
+ -> super categoria
+ -> categoria simples 
+ -> evento de reposição
+ -> histórico
+ -> planograma 
 
 
 
@@ -107,13 +119,13 @@ retalhistas de supermercado
  - é necessário manter o histórico de eventos de reabastecimento
    -- caraterizado 
 		--  momento em que ocorre 
-            --  número de unidades substituídas.
-                -- limitada superiormente pela quantidade definida no planograma 
-		-- registo do retalhista respons´vale 
+        --  número de unidades substituídas.
+            -- limitada superiormente pela quantidade definida no planograma 
+		-- registo do retalhista responsável
 
   -- é necessário garantir que a prateleira esteja 
 	-- limpa 
-	--organizada
+	-- organizada
 
 ------------------------------------------------------------------------------------------------
 
@@ -131,6 +143,8 @@ Em aberto  --
 -- procurar restringir as associações caso possível ?
 
 -- estabelecer as restrições de integridade  ?
+
+-- onde e como definir o tipo de embalagem ? 
 
 
 
