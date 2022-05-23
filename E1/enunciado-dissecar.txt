@@ -44,7 +44,7 @@ IVMS - Intelligent Vending Machines
 
 
 		- produtos encontram-se dispostos nas prateleiras.
-		- seguem em plano conhecido como planograma
+		- seguem um plano conhecido como planograma
 		------------
 		planograma 
 		------------
@@ -56,11 +56,10 @@ IVMS - Intelligent Vending Machines
 ------------
 produtos 
 ------------
- - têm código de barra númericode 13 dígitos - Código EAN 
+ - têm código de barra númerico de 13 dígitos - Código EAN 
  - têm uma designação textual 
  - marca ou nome 
    - pode-se ter unicamente a marca , ou nome, ou mesmo ambos.
-
 
 - produtos flexíveis 
 - produtos rígidos 
