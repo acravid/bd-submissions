@@ -146,10 +146,22 @@ Em aberto  --
 
 -- onde e como definir o tipo de embalagem ? 
 
+-- ponto de retalho é dentro da morada?  
+
+-- em relação as pratelira
+
 
 
 -- definir lista de termos por entender ?
 
+
+------------------------------------------------------------------------------------------------
+
+
+
+Restrição de integridade 
+
+As categorias têm prateleiras pré-determinada portanto , teria de ser uma associação obrigatória ( multipicity) one to one  ?
 
 
 
