@@ -1,0 +1,1 @@
+-- verificar a correspondencia entre as queries SQL e a expressão em álgebra relacional associada.
