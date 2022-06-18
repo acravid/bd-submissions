@@ -1,0 +1,105 @@
+from enum import Enum
+
+messages =  ['INSERT INTO categoria VALUES','INSERT INTO categoria_simples VALUES',
+            'INSERT INTO super_categoria VALUES','INSERT INTO tem_outra VALUES',
+            'INSERT INTO produto VALUES','INSERT INTO tem_categoria VALUES',
+            'INSERT INTO IVM VALUES','INSERT INTO ponto_de_retalho VALUES',
+            'INSERT INTO instalada_em VALUES','INSERT INTO prateleira VALUES',            
+            'INSERT INTO planograma VALUES','INSERT INTO retalhista VALUES',
+            'INSERT INTO responsavel_por VALUES','INSERT INTO evento_reposicao VALUES'
+            ]
+
+
+
+class relation_name(Enum):
+    categoria = 0
+    categoria_simples = 1
+    super_categoria = 2
+    tem_outra = 3
+    produto = 4
+    tem_categoria = 5
+    IVM = 6
+    ponto_de_retalho = 7
+    instalada_em = 8
+    prateleira = 9
+    planograma = 10
+    retalhista = 11
+    responsavel_por = 12
+    evento_reposicao = 13
+
+def categoria(f):
+    blank_space(f)
+    message = messages[relation_name.categoria.value]
+    f.write(message)
+
+def categoria_simples(f):
+    blank_space(f)
+    message = messages[relation_name.categoria_simples.value]
+    f.write(message)
+
+def super_categoria(f):
+    blank_space(f)
+    message = messages[relation_name.super_categoria.value]
+    f.write(message)
+
+def tem_outra(f):
+    message = messages[relation_name.tem_outra.value]
+    
+    
+def produto(f):
+    message = messages[relation_name.produto.value]
+
+def tem_categoria(f):
+    message = messages[relation_name.tem_categoria.value]
+    
+
+def IVM(f):
+    message = messages[relation_name.IVM.value]
+    
+
+def ponto_de_retalho(f):
+    message = messages[relation_name.ponto_de_retalho.value]
+
+def instalada_em(f):
+    message = messages[relation_name.instalada_em.value]
+    
+
+def prateleira(f):
+    message = messages[relation_name.prateleira.value]
+
+def planograma(f):
+    message = messages[relation_name.planograma.value]
+    
+
+def retalhista(f):
+    message = messages[relation_name.relation_name.value]
+
+def responsavel_por(f):
+    message = messages[relation_name.responsavel_por.value]
+    
+
+def evento_reposicao(f):
+    message = messages[relation_name.evento_reposicao.value]
+
+def blank_space(f):
+    f.write("\n")
+
+def main():
+    f = open("populate.sql", "w+")
+    categoria(f)
+    categoria_simples(f)
+    super_categoria(f)
+    tem_outra(f) 
+    produto(f)
+    tem_categoria(f)
+    IVM(f)
+    ponto_de_retalho(f)
+    instalada_em(f)
+    prateleira(f)
+    planograma(f)
+    retalhista(f)
+    responsavel_por(f)
+    evento_reposicao(f)
+
+if __name__ == "__main__":
+    main()
