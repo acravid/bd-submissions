@@ -30,6 +30,7 @@ CREATE TABLE categoria_simples(
 
 CREATE TABLE super_categoria(
     nome VARCHAR(150) NOT NULL,
+    PRIMARY KEY (nome),
     FOREIGN KEY (nome) REFERENCES categoria(nome)
 
 );
@@ -37,7 +38,7 @@ CREATE TABLE super_categoria(
 CREATE TABLE tem_outra(
     super_categoria VARCHAR(150) NOT NULL,
     categoria VARCHAR(150) NOT NULL,
-    PRIMARY KEY (categoria)
+    PRIMARY KEY (categoria),
     FOREIGN KEY (super_categoria) REFERENCES super_categoria(nome),
     FOREIGN KEY (categoria) REFERENCES categoria(nome),
     UNIQUE (super_categoria, categoria),
@@ -80,10 +81,10 @@ CREATE TABLE ponto_de_retalho(
 CREATE TABLE instalada_em(
     num_serie INT NOT NULL CHECK (num_serie >= 0),
     fabricante VARCHAR(150) NOT NULL,
-    local VARCHAR(150) NOT NULL,
+    loc VARCHAR(150) NOT NULL,
     PRIMARY KEY (num_serie,fabricante),
     FOREIGN KEY (num_serie,fabricante) REFERENCES IVM(num_serie,fabricante),
-    FOREIGN KEY (local)  REFERENCES ponto_de_retalho(nome)
+    FOREIGN KEY (loc)  REFERENCES ponto_de_retalho(nome)
 );
 
 CREATE TABLE prateleira(
@@ -104,7 +105,7 @@ CREATE TABLE planograma(
     nro SMALLINT NOT NULL,
     num_serie INT NOT NULL CHECK (num_serie >= 0),
     fabricante VARCHAR(150) NOT NULL,
-    faces SMALLINT NOT NULL (faces) CHECK (faces >= 0),
+    faces SMALLINT NOT NULL CHECK (faces >= 0),
     unidades INT NOT NULL CHECK (unidades > 0),
     loc VARCHAR(150) NOT NULL,
     PRIMARY KEY (ean,nro,num_serie,fabricante),
@@ -141,5 +142,4 @@ CREATE TABLE evento_reposicao(
     PRIMARY KEY (ean,nro,num_serie,fabricante,instante),
     FOREIGN KEY (ean,nro,num_serie,fabricante) REFERENCES planograma(ean,nro,num_serie,fabricante),
     FOREIGN KEY (tin) REFERENCES retalhista(tin)
-    CHECK(unidades <= planograma(unidades))
 );
