@@ -58,6 +58,19 @@ data_ivm = [
             [10,'YorokobiNoKonpyUta']
            ]
 
+data_ponto_de_retalho = [
+                         ['Terena','Evora,','Alandroal'],
+                         ['Capelins','Evora,','Alandroal'],
+                         ['Amareleja','Beja','Moura'],
+                         ['Argela','Viana do Castelo','Caminha'],
+                         ['Vile','Viana do Castelo','Caminha'],
+                         ['Vale da Mula','Guarda','Almeida'],
+                         ['Fazendas de Almeirim','Santarém','Almeirim'],
+                         ['Benfica do Ribatejo','Santarém','Almeirim'],
+                         ['Pombalinho','Santárem','Golega'],
+                         ['Azinhaga','Santárem','Golega'],
+                         ['Lavos','Coimbra','Figueira da Foz,']
+                    ]
 
 class relation_name(Enum):
     categoria = 0
@@ -127,8 +140,12 @@ def ivm(f):
         
 
 def ponto_de_retalho(f):
+    add_empty_line(f,1)    
     message = messages[relation_name.ponto_de_retalho.value]
+    for local in data_ponto_de_retalho:
+         f.write(message + " ('" + str(local[0]) + '\' , \'' +  str(local[1])  +   '\' , \'' + str(local[2]) + "')\n")
 
+        
 def instalada_em(f):
     message = messages[relation_name.instalada_em.value]
 
