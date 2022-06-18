@@ -48,8 +48,6 @@ data_produto = [[6724720415006,'Concerto Jazz','Yosemite Jazz Train'],[306687897
           ]
 
 
-
-
 class relation_name(Enum):
     categoria = 0
     categoria_simples = 1
@@ -66,11 +64,13 @@ class relation_name(Enum):
     responsavel_por = 12
     evento_reposicao = 13
 
+
 def categoria(f):
     add_empty_line(f,1)
     message = messages[relation_name.categoria.value]
     for categoria in data_categoria:
         f.write(message + " ('" + str(categoria) + "')\n")
+
 
 def categoria_simples(f):
     add_empty_line(f,1)
@@ -91,17 +91,22 @@ def tem_outra(f):
     message = messages[relation_name.tem_outra.value]
     for super_categoria in data_tem_outra:
         for categoria in data_tem_outra[super_categoria]:
-             f.write(message + " ('" + str(super_categoria) + '\' , \'' +  str(categoria)  + "')\n")
-            
+            f.write(message + " ('" + str(super_categoria) + '\' , \'' +  str(categoria)  + "')\n")
+
+
 def produto(f):
     add_empty_line(f,1)
     message = messages[relation_name.produto.value]
     for produto in data_produto:
            f.write(message + " (" + str(produto[0]) + ' , \'' +  str(produto[1])  +   '\' , \'' + str(produto[2]) + "')\n")
 
-def tem_categoria(f):
-    message = messages[relation_name.tem_categoria.value]
 
+def tem_categoria(f):
+    add_empty_line(f,1)
+    message = messages[relation_name.tem_categoria.value]
+    for produto in data_produto:
+        f.write(message + " (" + str(produto[0]) + ' , \'' +  str(produto[1])  + "')\n")
+        
 
 def ivm(f):
     message = messages[relation_name.IVM.value]
