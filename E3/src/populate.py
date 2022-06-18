@@ -33,7 +33,7 @@ data_tem_outra = {'Bilheteria de Concertos': ['Concerto Jazz','Rock in Rio'],
                  }
 
 
-produto = [[6724720415006,'Concerto Jazz','Yosemite Jazz Train'],[3066878977973,'Concerto Jazz','Blue Note Napa'],[7459992703439,'Concerto Jazz','Lake Arbor Jazz Festival'],
+data_produto = [[6724720415006,'Concerto Jazz','Yosemite Jazz Train'],[3066878977973,'Concerto Jazz','Blue Note Napa'],[7459992703439,'Concerto Jazz','Lake Arbor Jazz Festival'],
             [8696269363171,'Rock in Rio','Rock in Rio 2022 day 1'],[4557627136203,'Pastelaria Tradicional Portuguesa','Bolo das Alhadas'],
             [9942465294964,'Pastelaria Tradicional Portuguesa','Cascoréis da Guarda'],[2710900779537,'Pastelaria Russa','Tchak-Tchak'],
             [3995024369208,'Jogos de Tabuleiro','D&D Fantasy Roleplaying Game Essentials Kit'],[9636288660814,'Jogos de Tabuleiro','Mazescape Labyrinthos'],
@@ -93,17 +93,11 @@ def tem_outra(f):
         for categoria in data_tem_outra[super_categoria]:
              f.write(message + " ('" + str(super_categoria) + '\' , \'' +  str(categoria)  + "')\n")
             
-
-    # data_tem_outra = {'Bilheteria de Concertos': ['Concerto Jazz','Rock in Rio'],
-    #                 'Pastelaria':['Pastelaria Tradicional Portuguesa', 'Pastelaria Russa'],
-    #                 'Jogos': ['Jogos de Tabuleiro','Jogos de Cartas e Colecionaveis','Puzzles','Jogos Educativos e Didáticos'],
-    #                 'BD E MANGA':['Comics','Graphic Novels','Manga','BD Franco-Belga']
-    #              }
-
-
-
 def produto(f):
+    add_empty_line(f,1)
     message = messages[relation_name.produto.value]
+    for produto in data_produto:
+           f.write(message + " (" + str(produto[0]) + ' , \'' +  str(produto[1])  +   '\' , \'' + str(produto[2]) + "')\n")
 
 def tem_categoria(f):
     message = messages[relation_name.tem_categoria.value]
