@@ -67,27 +67,39 @@ class relation_name(Enum):
     evento_reposicao = 13
 
 def categoria(f):
-    blank_space(f,1)
+    add_empty_line(f,1)
     message = messages[relation_name.categoria.value]
     for categoria in data_categoria:
         f.write(message + " ('" + str(categoria) + "')\n")
 
 def categoria_simples(f):
-    blank_space(f,1)
+    add_empty_line(f,1)
     message = messages[relation_name.categoria_simples.value]
     for categoria_simples in data_categoria_simples:
         f.write(message + " ('" + str(categoria_simples) + "')\n")
     
 
 def super_categoria(f):
-    blank_space(f,1)
+    add_empty_line(f,1)
     message = messages[relation_name.super_categoria.value]
     for super_categoria in data_super_categoria:
         f.write(message + " ('" + str(super_categoria) + "')\n")
 
 
 def tem_outra(f):
+    add_empty_line(f,1)
     message = messages[relation_name.tem_outra.value]
+    for super_categoria in data_tem_outra:
+        for categoria in data_tem_outra[super_categoria]:
+             f.write(message + " ('" + str(super_categoria) + '\' , \'' +  str(categoria)  + "')\n")
+            
+
+    # data_tem_outra = {'Bilheteria de Concertos': ['Concerto Jazz','Rock in Rio'],
+    #                 'Pastelaria':['Pastelaria Tradicional Portuguesa', 'Pastelaria Russa'],
+    #                 'Jogos': ['Jogos de Tabuleiro','Jogos de Cartas e Colecionaveis','Puzzles','Jogos Educativos e Didáticos'],
+    #                 'BD E MANGA':['Comics','Graphic Novels','Manga','BD Franco-Belga']
+    #              }
+
 
 
 def produto(f):
@@ -125,7 +137,7 @@ def responsavel_por(f):
 def evento_reposicao(f):
     message = messages[relation_name.evento_reposicao.value]
 
-def blank_space(f,mode):
+def add_empty_line(f,mode):
     if mode == 1:
         f.write("\n")
     else:
