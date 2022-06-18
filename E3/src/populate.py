@@ -1,6 +1,7 @@
 from enum import Enum
 
-messages =  ['INSERT INTO categoria VALUES','INSERT INTO categoria_simples VALUES',
+messages =  [
+            'INSERT INTO categoria VALUES','INSERT INTO categoria_simples VALUES',
             'INSERT INTO super_categoria VALUES','INSERT INTO tem_outra VALUES',
             'INSERT INTO produto VALUES','INSERT INTO tem_categoria VALUES',
             'INSERT INTO IVM VALUES','INSERT INTO ponto_de_retalho VALUES',
@@ -10,42 +11,52 @@ messages =  ['INSERT INTO categoria VALUES','INSERT INTO categoria_simples VALUE
             ]
 
 
-data_categoria = ['Bilheteria de Concertos','Concerto Jazz', 'Rock in Rio'
-                 ,'Pastelaria', 'Pastelaria Tradicional Portuguesa', 'Pastelaria Russa',
-                 'Jogos','Jogos de Tabuleiro','Jogos de Cartas e Colecionaveis','Puzzles','Jogos Educativos e Didáticos'
-                 ,'BD E MANGA','Comics','Graphic Novels','Manga','BD Franco-Belga'
+data_categoria = [ 
+                    'Bilheteria de Concertos','Concerto Jazz', 'Rock in Rio',
+                    'Pastelaria', 'Pastelaria Tradicional Portuguesa', 'Pastelaria Russa',
+                    'Jogos','Jogos de Tabuleiro','Jogos de Cartas e Colecionaveis','Puzzles','Jogos Educativos e Didáticos',
+                    'BD E MANGA','Comics','Graphic Novels','Manga','BD Franco-Belga'
                  ]
 
 
 data_super_categoria = ['Bilheteria de Concertos','Pastelaria','Jogos','BD E MANGA']
 
 
-data_categoria_simples = ['Concerto Jazz','Rock in Rio','Pastelaria Tradicional Portuguesa', 'Pastelaria Russa',
-                          'Jogos de Tabuleiro','Jogos de Cartas e Colecionaveis','Puzzles','Jogos Educativos e Didáticos',
-                          'Comics','Graphic Novels','Manga','BD Franco-Belga'
+data_categoria_simples = [
+                            'Concerto Jazz','Rock in Rio','Pastelaria Tradicional Portuguesa', 'Pastelaria Russa',
+                            'Jogos de Tabuleiro','Jogos de Cartas e Colecionaveis','Puzzles','Jogos Educativos e Didáticos',
+                            'Comics','Graphic Novels','Manga','BD Franco-Belga'
                          ]
 
 
-data_tem_outra = {'Bilheteria de Concertos': ['Concerto Jazz','Rock in Rio'],
+data_tem_outra = {
+                    'Bilheteria de Concertos': ['Concerto Jazz','Rock in Rio'],
                     'Pastelaria':['Pastelaria Tradicional Portuguesa', 'Pastelaria Russa'],
                     'Jogos': ['Jogos de Tabuleiro','Jogos de Cartas e Colecionaveis','Puzzles','Jogos Educativos e Didáticos'],
                     'BD E MANGA':['Comics','Graphic Novels','Manga','BD Franco-Belga']
                  }
 
 
-data_produto = [[6724720415006,'Concerto Jazz','Yosemite Jazz Train'],[3066878977973,'Concerto Jazz','Blue Note Napa'],[7459992703439,'Concerto Jazz','Lake Arbor Jazz Festival'],
-            [8696269363171,'Rock in Rio','Rock in Rio 2022 day 1'],[4557627136203,'Pastelaria Tradicional Portuguesa','Bolo das Alhadas'],
-            [9942465294964,'Pastelaria Tradicional Portuguesa','Cascoréis da Guarda'],[2710900779537,'Pastelaria Russa','Tchak-Tchak'],
-            [3995024369208,'Jogos de Tabuleiro','D&D Fantasy Roleplaying Game Essentials Kit'],[9636288660814,'Jogos de Tabuleiro','Mazescape Labyrinthos'],
-            [9921300602214,'Jogos de Cartas e Colecionaveis','Pokémon! Sword & Shield Evolving Skies Sleeved Booster Pack'],
-            [1318457603402,'Jogos de Cartas e Colecionaveis','Pokémon S&S 7 Evolving Skies 3 Pack Blister'],
-            [2757533699180,'Puzzles','Puzzle Mordillo Impossible'],[1466521538768,'Puzzles','Puzzle Stranger Things Impossible!'],
-            [3654965036310,'Jogos Educativos e Didáticos','Logic Farm'] ,[4663585483537,'Jogos Educativos e Didáticos','Guess The Flag Africa'] ,
-            [1544636251593,'Comics','Moon Knight - Book 1: Omnibus'],[2796302894290,'Comics','Deadpool - Preto, Branco & Sangue'],
-            [8609107719766,'Graphic Novels','Stranger Things – Acampamento de Ciências'],[6389373905722,'Graphic Novels','Economix'],
-            [1384349735413,'Manga','SPY X FAMILY - VOL 1'],[1384349735513,'Manga','SPY X FAMILY - VOL 2'],
-            [1384349935513,'BD Franco-Belga','Asterix Il Alcaforron'],[1384349765513,'BD Franco-Belga','Asterix I Alcaforron']
-          ]
+data_produto = [
+                [6724720415006,'Concerto Jazz','Yosemite Jazz Train'],[3066878977973,'Concerto Jazz','Blue Note Napa'],[7459992703439,'Concerto Jazz','Lake Arbor Jazz Festival'],
+                [8696269363171,'Rock in Rio','Rock in Rio 2022 day 1'],[4557627136203,'Pastelaria Tradicional Portuguesa','Bolo das Alhadas'],
+                [9942465294964,'Pastelaria Tradicional Portuguesa','Cascoréis da Guarda'],[2710900779537,'Pastelaria Russa','Tchak-Tchak'],
+                [3995024369208,'Jogos de Tabuleiro','D&D Fantasy Roleplaying Game Essentials Kit'],[9636288660814,'Jogos de Tabuleiro','Mazescape Labyrinthos'],
+                [9921300602214,'Jogos de Cartas e Colecionaveis','Pokémon! Sword & Shield Evolving Skies Sleeved Booster Pack'],
+                [1318457603402,'Jogos de Cartas e Colecionaveis','Pokémon S&S 7 Evolving Skies 3 Pack Blister'],
+                [2757533699180,'Puzzles','Puzzle Mordillo Impossible'],[1466521538768,'Puzzles','Puzzle Stranger Things Impossible!'],
+                [3654965036310,'Jogos Educativos e Didáticos','Logic Farm'] ,[4663585483537,'Jogos Educativos e Didáticos','Guess The Flag Africa'] ,
+                [1544636251593,'Comics','Moon Knight - Book 1: Omnibus'],[2796302894290,'Comics','Deadpool - Preto, Branco & Sangue'],
+                [8609107719766,'Graphic Novels','Stranger Things – Acampamento de Ciências'],[6389373905722,'Graphic Novels','Economix'],
+                [1384349735413,'Manga','SPY X FAMILY - VOL 1'],[1384349735513,'Manga','SPY X FAMILY - VOL 2'],
+                [1384349935513,'BD Franco-Belga','Asterix Il Alcaforron'],[1384349765513,'BD Franco-Belga','Asterix I Alcaforron']
+               ]
+
+data_ivm = [
+            [0,'Labsa'],[1,'Demodia'],[2,'Pitho'],[3,'Hotan'],[4,'CucaTest'],
+            [5,'CookieLabs'],[6,'Eten'],[7,'JazzFul'],[8,'Jubex'],[9,'Harumaki'],
+            [10,'YorokobiNoKonpyUta']
+           ]
 
 
 class relation_name(Enum):
@@ -109,8 +120,11 @@ def tem_categoria(f):
         
 
 def ivm(f):
+    add_empty_line(f,1)
     message = messages[relation_name.IVM.value]
-
+    for ivm in data_ivm:
+        f.write(message + " (" + str(ivm[0]) + ' , \'' +  str(ivm[1])  + "')\n")
+        
 
 def ponto_de_retalho(f):
     message = messages[relation_name.ponto_de_retalho.value]
