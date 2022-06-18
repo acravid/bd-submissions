@@ -70,7 +70,7 @@ data_ponto_de_retalho = [
                          ['Pombalinho','Santárem','Golega'],
                          ['Azinhaga','Santárem','Golega'],
                          ['Lavos','Coimbra','Figueira da Foz,']
-                    ]
+                        ]
 
 class relation_name(Enum):
     categoria = 0
@@ -147,11 +147,15 @@ def ponto_de_retalho(f):
 
         
 def instalada_em(f):
+    add_empty_line(f,1)
     message = messages[relation_name.instalada_em.value]
+    for info in range(11):
+        f.write(message + " (" + str(data_ivm[info][0]) + ' , \'' +  str(data_ivm[info][1]) +   '\' , \'' + str(data_ponto_de_retalho[info][0]) + "')\n")
 
 
 def prateleira(f):
     message = messages[relation_name.prateleira.value]
+
 
 def planograma(f):
     message = messages[relation_name.planograma.value]
@@ -160,6 +164,7 @@ def planograma(f):
 def retalhista(f):
     message = messages[relation_name.retalhista.value]
 
+
 def responsavel_por(f):
     message = messages[relation_name.responsavel_por.value]
 
@@ -167,12 +172,14 @@ def responsavel_por(f):
 def evento_reposicao(f):
     message = messages[relation_name.evento_reposicao.value]
 
+
 def add_empty_line(f,mode):
     if mode == 1:
         f.write("\n")
     else:
         for el in range(mode + 1):
             f.write("\n")
+
 
 def main():
     f = open("populate.sql", "w+")
