@@ -16,7 +16,7 @@ data_categoria = [
                     'Pastelaria', 'Pastelaria Tradicional Portuguesa', 'Pastelaria Russa',
                     'Jogos','Jogos de Tabuleiro','Jogos de Cartas e Colecionaveis','Puzzles','Jogos Educativos e Didáticos',
                     'BD E MANGA','Comics','Graphic Novels','Manga','BD Franco-Belga'
-                 ]
+                ]
 
 
 data_super_categoria = ['Bilheteria de Concertos','Pastelaria','Jogos','BD E MANGA']
@@ -26,7 +26,7 @@ data_categoria_simples = [
                             'Concerto Jazz','Rock in Rio','Pastelaria Tradicional Portuguesa', 'Pastelaria Russa',
                             'Jogos de Tabuleiro','Jogos de Cartas e Colecionaveis','Puzzles','Jogos Educativos e Didáticos',
                             'Comics','Graphic Novels','Manga','BD Franco-Belga'
-                         ]
+                        ]
 
 
 data_tem_outra = {
@@ -34,7 +34,7 @@ data_tem_outra = {
                     'Pastelaria':['Pastelaria Tradicional Portuguesa', 'Pastelaria Russa'],
                     'Jogos': ['Jogos de Tabuleiro','Jogos de Cartas e Colecionaveis','Puzzles','Jogos Educativos e Didáticos'],
                     'BD E MANGA':['Comics','Graphic Novels','Manga','BD Franco-Belga']
-                 }
+                }
 
 
 data_produto = [
@@ -61,7 +61,7 @@ data_produto = [
                 [1384349735513,'Manga','SPY X FAMILY - VOL 2'],
                 [1384349935513,'BD Franco-Belga','Asterix Il Alcaforron'],
                 [1384349765513,'BD Franco-Belga','Asterix I Alcaforron']
-               ]
+                ]
 
 data_produto_simplified = [
                             [6724720415006,'Concerto Jazz','Yosemite Jazz Train'],
@@ -76,28 +76,28 @@ data_produto_simplified = [
                             [6389373905722,'Graphic Novels','Economix'],
                             [1384349735413,'Manga','SPY X FAMILY - VOL 1'],
                             [1384349935513,'BD Franco-Belga','Asterix Il Alcaforron'],
-                          ]
+                            ]
 
 
 data_ivm = [
             [0,'Labsa'],[1,'Demodia'],[2,'Pitho'],[3,'Hotan'],[4,'CucaTest'],
             [5,'CookieLabs'],[6,'Eten'],[7,'JazzFul'],[8,'Jubex'],[9,'Harumaki'],
             [10,'YorokobiNoKonpyUta'], [11,'Jojorata']
-           ]
+            ]
 
 data_ponto_de_retalho = [
-                         ['Terena','Evora,','Alandroal'],
-                         ['Capelins','Evora,','Alandroal'],
-                         ['Amareleja','Beja','Moura'],
-                         ['Argela','Viana do Castelo','Caminha'],
-                         ['Vile','Viana do Castelo','Caminha'],
-                         ['Vale da Mula','Guarda','Almeida'],
-                         ['Fazendas de Almeirim','Santarém','Almeirim'],
-                         ['Benfica do Ribatejo','Santarém','Almeirim'],
-                         ['Pombalinho','Santárem','Golega'],
-                         ['Azinhaga','Santárem','Golega'],
-                         ['Lavos','Coimbra','Figueira da Foz,'],
-                         ['Marinha das Ondas','Coimbra','Figueira da Foz,']
+                        ['Terena','Evora,','Alandroal'],
+                        ['Capelins','Evora,','Alandroal'],
+                        ['Amareleja','Beja','Moura'],
+                        ['Argela','Viana do Castelo','Caminha'],
+                        ['Vile','Viana do Castelo','Caminha'],
+                        ['Vale da Mula','Guarda','Almeida'],
+                        ['Fazendas de Almeirim','Santarém','Almeirim'],
+                        ['Benfica do Ribatejo','Santarém','Almeirim'],
+                        ['Pombalinho','Santárem','Golega'],
+                        ['Azinhaga','Santárem','Golega'],
+                        ['Lavos','Coimbra','Figueira da Foz,'],
+                        ['Marinha das Ondas','Coimbra','Figueira da Foz,']
                         ]
 data_prateleira_number = [el for el in range(12)]
 data_prateleira_altura = [el for el in range(10,34,2)]
@@ -106,13 +106,13 @@ data_retalhista = [
                     [123562845,'Gaspar Abreu'],[123564845,'Bruna Cunha'], [123562846,'Salomé Fernandes'],  [123562849,'Cristiano Carvalho'],
                     [123562847,'Inês Macedo'],[123562841,'Diogo Guerreiro'],[123562843,'Leonor Silva'],[153562845,'Laura Andrade'],  
                     [120562845,'Luna Miranda'],[123560845,'Tatiana Matos'],[123562840,'Miguel Salema'],[123562888,'Mateus Lisboa']
-                  ] 
+                    ] 
 
 data_timestamps = [
                     '2022-01-08 04:05:06','2022-04-08 14:05:36','2022-05-08 16:15:08','2022-06-03 20:05:06','2022-07-08 20:45:16',
                     '2022-08-08 12:15:00','2022-02-08 16:49:26','2022-02-02 20:00:16','2022-03-08 10:05:16','2022-07-08 14:45:16',
                     '2022-04-08 20:35:16','2022-07-08 13:45:16'
-                   ]
+                    ]
 
 class relation_name(Enum):
     categoria = 0
@@ -135,21 +135,21 @@ def categoria(f):
     add_empty_line(f,1)
     message = messages[relation_name.categoria.value]
     for categoria in data_categoria:
-        f.write(message + " ('" + str(categoria) + "')\n")
+        f.write(message + " ('" + str(categoria) + "');\n")
 
 
 def categoria_simples(f):
     add_empty_line(f,1)
     message = messages[relation_name.categoria_simples.value]
     for categoria_simples in data_categoria_simples:
-        f.write(message + " ('" + str(categoria_simples) + "')\n")
+        f.write(message + " ('" + str(categoria_simples) + "');\n")
     
 
 def super_categoria(f):
     add_empty_line(f,1)
     message = messages[relation_name.super_categoria.value]
     for super_categoria in data_super_categoria:
-        f.write(message + " ('" + str(super_categoria) + "')\n")
+        f.write(message + " ('" + str(super_categoria) + "');\n")
 
 
 def tem_outra(f):
@@ -157,90 +157,103 @@ def tem_outra(f):
     message = messages[relation_name.tem_outra.value]
     for super_categoria in data_tem_outra:
         for categoria in data_tem_outra[super_categoria]:
-            f.write(message + " ('" + str(super_categoria) + '\' , \'' \ 
-            +  str(categoria)  + "')\n")
+            f.write((message + " ('" + str(super_categoria) + '\' , \''
+                                     + str(categoria) + "');\n"))
 
 
 def produto(f):
     add_empty_line(f,1)
     message = messages[relation_name.produto.value]
     for produto in data_produto:
-           f.write(message + " (" + str(produto[0]) + ' , \'' +  str(produto[1])  +   '\' , \'' \ 
-           + str(produto[2]) + "')\n")
-
+        f.write((message + " (" + str(produto[0]) + ' , \''
+                                + str(produto[1]) + '\' , \''
+                                + str(produto[2]) + "');\n"))
 
 def tem_categoria(f):
     add_empty_line(f,1)
     message = messages[relation_name.tem_categoria.value]
     for produto in data_produto:
-        f.write(message + " (" + str(produto[0]) + ' , \'' +  str(produto[1])  + "')\n")
-        
+        f.write((message + " (" + str(produto[0]) + ' , \''
+                                + str(produto[1])  + "');\n"))
 
 def ivm(f):
     add_empty_line(f,1)
     message = messages[relation_name.IVM.value]
     for ivm in data_ivm:
-        f.write(message + " (" + str(ivm[0]) + ' , \'' +  str(ivm[1])  + "')\n")
-        
+        f.write((message + " (" + str(ivm[0]) + ' , \''
+                                + str(ivm[1]) + "');\n"))
 
 def ponto_de_retalho(f):
     add_empty_line(f,1)    
     message = messages[relation_name.ponto_de_retalho.value]
     for local in data_ponto_de_retalho:
-         f.write(message + " ('" + str(local[0]) + '\' , \'' +  str(local[1])  +   '\' , \''\
-          + str(local[2]) + "')\n")
+        f.write((message + " ('" + str(local[0]) + '\' , \''
+                                 + str(local[1]) + '\' , \''
+                                 + str(local[2]) + "');\n"))
 
         
 def instalada_em(f):
     add_empty_line(f,1)
     message = messages[relation_name.instalada_em.value]
     for info in range(12):
-        f.write(message + " (" + str(data_ivm[info][0]) + ' , \'' +  str(data_ivm[info][1]) +   '\' , \''\
-         + str(data_ponto_de_retalho[info][0]) + "')\n")
+        f.write((message + " (" + str(data_ivm[info][0]) + ' , \''
+                                + str(data_ivm[info][1]) + '\' , \''
+                                + str(data_ponto_de_retalho[info][0]) + "');\n"))
 
 
 def prateleira(f):
     add_empty_line(f,1)
     message = messages[relation_name.prateleira.value]
     for num in data_prateleira_number:
-        f.write(message + " (" + str(num) + ' , ' +  str(data_ivm[num][0]) +   ' , \'' + str(data_ivm[num][1]) + '\' , ' \
-        + str(data_prateleira_altura[num]) +  ' , \'' + str(data_categoria_simples[num]) + "')\n")
+        f.write((message + " (" + str(num) + ' , '
+                                + str(data_ivm[num][0]) + ' , \''
+                                + str(data_ivm[num][1]) + '\' , '
+                                + str(data_prateleira_altura[num]) +  ' , \''
+                                + str(data_categoria_simples[num]) + "');\n"))
 
 
 def planograma(f):
     add_empty_line(f,1)
     message = messages[relation_name.planograma.value]
     for num in range(12):
-        f.write(message + " (" + str(data_produto_simplified[num][0]) + ' , ' +  str(num) +   ' , \'' \
-        + str(data_produto_simplified[num][1]) + '\' , \'' \
-        + str(data_ivm[num][1]) +  '\' , ' + str(data_planograma[num][0]) + ' , ' + str(data_planograma[num][1]) \
-        + ' ,\'' + str(data_planograma[num][2]) + "')\n")
-   
+        f.write((message + " (" + str(data_produto_simplified[num][0]) + ' , '
+                                + str(num) + ' , '
+                                + str(data_prateleira_number[num]) + ', \''
+                                #+ str(data_produto_simplified[num][1]) + '\' , \''
+                                + str(data_ivm[num][1]) +  '\' , '
+                                + str(data_planograma[num][0]) + ' , '
+                                + str(data_planograma[num][1]) + ' ,\''
+                                + str(data_planograma[num][2]) + "');\n"))
 
 def retalhista(f):
     add_empty_line(f,1)
     message = messages[relation_name.retalhista.value]
     for retalhista in data_retalhista:
-        f.write(message + " (" + str(retalhista[0]) + ' ,\'' + str(retalhista[1]) + "')\n")
+        f.write((message + " (" + str(retalhista[0]) + ' ,\''
+                                + str(retalhista[1]) + "');\n"))
 
 
 def responsavel_por(f):
     add_empty_line(f,1)
     message = messages[relation_name.responsavel_por.value]
     for info in range(12):
-        f.write(message + " ('" + str(data_categoria_simples[info]) + '\' , ' +  str(data_retalhista[info][0]) \
-         +   ' , ' +  str(data_ivm[info][0]) + ' , \''  \
-        +  str(data_ivm[info][1]) + "')\n")
+        f.write((message + " ('" + str(data_categoria_simples[info]) + '\' , '
+                                 + str(data_retalhista[info][0]) + ' , '
+                                 + str(data_ivm[info][0]) + ' , \''
+                                 + str(data_ivm[info][1]) + "');\n"))
 
 
 def evento_reposicao(f):
     add_empty_line(f,1)
     message = messages[relation_name.evento_reposicao.value]
     for info in range(12):
-         f.write(message + " (" + str(data_produto_simplified[info][0]) + ' , ' +  str(info) +   ' , \'' \
-         + str(data_produto_simplified[info][1]) + '\' , \'' \ 
-         + str(data_ivm[info][1]) +  '\' , \'' + str(data_timestamps[info]) + '\' , ' \
-         + str(data_planograma[info][1]) + ' , ' + str(data_retalhista[info][0])  + ")\n")
+        f.write((message + " (" + str(data_produto_simplified[info][0]) + ' , '
+                                + str(info) + ' , '
+                                + str(info) + ' , \''
+                                + str(data_ivm[info][1]) + '\' , \''
+                                + str(data_timestamps[info]) + '\' , '
+                                + str(data_planograma[info][1]) + ' , '
+                                + str(data_retalhista[info][0]) + ");\n"))
 
 def add_empty_line(f,mode):
     if mode == 1:
