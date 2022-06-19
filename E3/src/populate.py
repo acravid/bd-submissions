@@ -52,10 +52,26 @@ data_produto = [
                 [1384349935513,'BD Franco-Belga','Asterix Il Alcaforron'],[1384349765513,'BD Franco-Belga','Asterix I Alcaforron']
                ]
 
+data_produto_simplified = [
+                [6724720415006,'Concerto Jazz','Yosemite Jazz Train'],
+                [8696269363171,'Rock in Rio','Rock in Rio 2022 day 1'],
+                [4557627136203,'Pastelaria Tradicional Portuguesa','Bolo das Alhadas'],
+                [2710900779537,'Pastelaria Russa','Tchak-Tchak'],
+                [3995024369208,'Jogos de Tabuleiro','D&D Fantasy Roleplaying Game Essentials Kit'],
+                [9921300602214,'Jogos de Cartas e Colecionaveis','Pokémon! Sword & Shield Evolving Skies Sleeved Booster Pack'],
+                [2757533699180,'Puzzles','Puzzle Mordillo Impossible'],
+                [3654965036310,'Jogos Educativos e Didáticos','Logic Farm'] ,
+                [2796302894290,'Comics','Deadpool - Preto, Branco & Sangue'],
+                [6389373905722,'Graphic Novels','Economix'],
+                [1384349735413,'Manga','SPY X FAMILY - VOL 1'],
+                [1384349935513,'BD Franco-Belga','Asterix Il Alcaforron'],
+               ]
+
+
 data_ivm = [
             [0,'Labsa'],[1,'Demodia'],[2,'Pitho'],[3,'Hotan'],[4,'CucaTest'],
             [5,'CookieLabs'],[6,'Eten'],[7,'JazzFul'],[8,'Jubex'],[9,'Harumaki'],
-            [10,'YorokobiNoKonpyUta']
+            [10,'YorokobiNoKonpyUta'], [11,'Jojorata']
            ]
 
 data_ponto_de_retalho = [
@@ -69,8 +85,23 @@ data_ponto_de_retalho = [
                          ['Benfica do Ribatejo','Santarém','Almeirim'],
                          ['Pombalinho','Santárem','Golega'],
                          ['Azinhaga','Santárem','Golega'],
-                         ['Lavos','Coimbra','Figueira da Foz,']
+                         ['Lavos','Coimbra','Figueira da Foz,'],
+                         ['Marinha das Ondas','Coimbra','Figueira da Foz,']
                         ]
+data_prateleira_number = [el for el in range(12)]
+data_prateleira_altura = [el for el in range(10,34,2)]
+data_planograma = [[el + 2 ,el + 5,'weowewdw'+str(el)] for el in range(12)]
+data_retalhista = [ 
+                    [123562845,'Gaspar Abreu'],[123564845,'Bruna Cunha'], [123562846,'Salomé Fernandes'],  [123562849,'Cristiano Carvalho'],
+                    [123562847,'Inês Macedo'],[123562841,'Diogo Guerreiro'],[123562843,'Leonor Silva'],[153562845,'Laura Andrade'],  
+                    [120562845,'Luna Miranda'],[123560845,'Tatiana Matos'],[123562840,'Miguel Salema'],[123562888,'Mateus Lisboa']
+                  ] 
+
+data_timestamps = [
+                    '2022-01-08 04:05:06','2022-04-08 14:05:36','2022-05-08 16:15:08','2022-06-03 20:05:06','2022-07-08 20:45:16',
+                    '2022-08-08 12:15:00','2022-02-08 16:49:26','2022-02-02 20:00:16','2022-03-08 10:05:16','2022-07-08 14:45:16',
+                    '2022-04-08 20:35:16','2022-07-08 13:45:16'
+                   ]
 
 class relation_name(Enum):
     categoria = 0
@@ -149,29 +180,47 @@ def ponto_de_retalho(f):
 def instalada_em(f):
     add_empty_line(f,1)
     message = messages[relation_name.instalada_em.value]
-    for info in range(11):
+    for info in range(12):
         f.write(message + " (" + str(data_ivm[info][0]) + ' , \'' +  str(data_ivm[info][1]) +   '\' , \'' + str(data_ponto_de_retalho[info][0]) + "')\n")
 
 
 def prateleira(f):
+    add_empty_line(f,1)
     message = messages[relation_name.prateleira.value]
+    for num in data_prateleira_number:
+        f.write(message + " (" + str(num) + ' , ' +  str(data_ivm[num][0]) +   ' , \'' + str(data_ivm[num][1]) + '\' , ' \
+        + str(data_prateleira_altura[num]) +  ' , \'' + str(data_categoria_simples[num]) + "')\n")
 
 
 def planograma(f):
+    add_empty_line(f,1)
     message = messages[relation_name.planograma.value]
-
+    for num in range(12):
+        f.write(message + " (" + str(data_produto_simplified[num][0]) + ' , ' +  str(num) +   ' , \'' + str(data_produto_simplified[num][1]) + '\' , \'' \
+        + str(data_ivm[num][1]) +  '\' , ' + str(data_planograma[num][0]) + ' , ' + str(data_planograma[num][1]) + ' ,\'' + str(data_planograma[num][2]) + "')\n")
+   
 
 def retalhista(f):
+    add_empty_line(f,1)
     message = messages[relation_name.retalhista.value]
+    for retalhista in data_retalhista:
+        f.write(message + " (" + str(retalhista[0]) + ' ,\'' + str(retalhista[1]) + "')\n")
 
 
 def responsavel_por(f):
+    add_empty_line(f,1)
     message = messages[relation_name.responsavel_por.value]
+    for info in range(12):
+        f.write(message + " ('" + str(data_categoria_simples[info]) + '\' , ' +  str(data_retalhista[info][0]) +   ' , ' +  str(data_ivm[info][0]) + ' , \''  \
+        +  str(data_ivm[info][1]) + "')\n")
 
 
 def evento_reposicao(f):
+    add_empty_line(f,1)
     message = messages[relation_name.evento_reposicao.value]
-
+    for info in range(12):
+         f.write(message + " (" + str(data_produto_simplified[info][0]) + ' , ' +  str(info) +   ' , \'' + str(data_produto_simplified[info][1]) + '\' , \'' \
+        + str(data_ivm[info][1]) +  '\' , \'' + str(data_timestamps[info]) + '\' , ' + str(data_planograma[info][1]) + ' , ' + str(data_retalhista[info][0])  + ")\n")
 
 def add_empty_line(f,mode):
     if mode == 1:
@@ -197,6 +246,7 @@ def main():
     retalhista(f)
     responsavel_por(f)
     evento_reposicao(f)
+    f.close()
 
 if __name__ == "__main__":
     main()
