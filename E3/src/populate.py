@@ -38,34 +38,45 @@ data_tem_outra = {
 
 
 data_produto = [
-                [6724720415006,'Concerto Jazz','Yosemite Jazz Train'],[3066878977973,'Concerto Jazz','Blue Note Napa'],[7459992703439,'Concerto Jazz','Lake Arbor Jazz Festival'],
-                [8696269363171,'Rock in Rio','Rock in Rio 2022 day 1'],[4557627136203,'Pastelaria Tradicional Portuguesa','Bolo das Alhadas'],
-                [9942465294964,'Pastelaria Tradicional Portuguesa','Cascoréis da Guarda'],[2710900779537,'Pastelaria Russa','Tchak-Tchak'],
-                [3995024369208,'Jogos de Tabuleiro','D&D Fantasy Roleplaying Game Essentials Kit'],[9636288660814,'Jogos de Tabuleiro','Mazescape Labyrinthos'],
+                [6724720415006,'Concerto Jazz','Yosemite Jazz Train'],
+                [3066878977973,'Concerto Jazz','Blue Note Napa'],
+                [7459992703439,'Concerto Jazz','Lake Arbor Jazz Festival'],
+                [8696269363171,'Rock in Rio','Rock in Rio 2022 day 1'],
+                [4557627136203,'Pastelaria Tradicional Portuguesa','Bolo das Alhadas'],
+                [9942465294964,'Pastelaria Tradicional Portuguesa','Cascoréis da Guarda'],
+                [2710900779537,'Pastelaria Russa','Tchak-Tchak'],
+                [3995024369208,'Jogos de Tabuleiro','D&D Fantasy Roleplaying Game Essentials Kit'],
+                [9636288660814,'Jogos de Tabuleiro','Mazescape Labyrinthos'],
                 [9921300602214,'Jogos de Cartas e Colecionaveis','Pokémon! Sword & Shield Evolving Skies Sleeved Booster Pack'],
                 [1318457603402,'Jogos de Cartas e Colecionaveis','Pokémon S&S 7 Evolving Skies 3 Pack Blister'],
-                [2757533699180,'Puzzles','Puzzle Mordillo Impossible'],[1466521538768,'Puzzles','Puzzle Stranger Things Impossible!'],
-                [3654965036310,'Jogos Educativos e Didáticos','Logic Farm'] ,[4663585483537,'Jogos Educativos e Didáticos','Guess The Flag Africa'] ,
-                [1544636251593,'Comics','Moon Knight - Book 1: Omnibus'],[2796302894290,'Comics','Deadpool - Preto, Branco & Sangue'],
-                [8609107719766,'Graphic Novels','Stranger Things – Acampamento de Ciências'],[6389373905722,'Graphic Novels','Economix'],
-                [1384349735413,'Manga','SPY X FAMILY - VOL 1'],[1384349735513,'Manga','SPY X FAMILY - VOL 2'],
-                [1384349935513,'BD Franco-Belga','Asterix Il Alcaforron'],[1384349765513,'BD Franco-Belga','Asterix I Alcaforron']
+                [2757533699180,'Puzzles','Puzzle Mordillo Impossible'],
+                [1466521538768,'Puzzles','Puzzle Stranger Things Impossible!'],
+                [3654965036310,'Jogos Educativos e Didáticos','Logic Farm'] ,
+                [4663585483537,'Jogos Educativos e Didáticos','Guess The Flag Africa'] ,
+                [1544636251593,'Comics','Moon Knight - Book 1: Omnibus'],
+                [2796302894290,'Comics','Deadpool - Preto, Branco & Sangue'],
+                [8609107719766,'Graphic Novels','Stranger Things – Acampamento de Ciências'],
+                [6389373905722,'Graphic Novels','Economix'],
+                [1384349735413,'Manga','SPY X FAMILY - VOL 1'],
+                [1384349735513,'Manga','SPY X FAMILY - VOL 2'],
+                [1384349935513,'BD Franco-Belga','Asterix Il Alcaforron'],
+                [1384349765513,'BD Franco-Belga','Asterix I Alcaforron']
                ]
 
 data_produto_simplified = [
-                [6724720415006,'Concerto Jazz','Yosemite Jazz Train'],
-                [8696269363171,'Rock in Rio','Rock in Rio 2022 day 1'],
-                [4557627136203,'Pastelaria Tradicional Portuguesa','Bolo das Alhadas'],
-                [2710900779537,'Pastelaria Russa','Tchak-Tchak'],
-                [3995024369208,'Jogos de Tabuleiro','D&D Fantasy Roleplaying Game Essentials Kit'],
-                [9921300602214,'Jogos de Cartas e Colecionaveis','Pokémon! Sword & Shield Evolving Skies Sleeved Booster Pack'],
-                [2757533699180,'Puzzles','Puzzle Mordillo Impossible'],
-                [3654965036310,'Jogos Educativos e Didáticos','Logic Farm'] ,
-                [2796302894290,'Comics','Deadpool - Preto, Branco & Sangue'],
-                [6389373905722,'Graphic Novels','Economix'],
-                [1384349735413,'Manga','SPY X FAMILY - VOL 1'],
-                [1384349935513,'BD Franco-Belga','Asterix Il Alcaforron'],
-               ]
+                            [6724720415006,'Concerto Jazz','Yosemite Jazz Train'],
+                            [8696269363171,'Rock in Rio','Rock in Rio 2022 day 1'],
+                            [4557627136203,'Pastelaria Tradicional Portuguesa','Bolo das Alhadas'],
+                            [2710900779537,'Pastelaria Russa','Tchak-Tchak'],
+                            [3995024369208,'Jogos de Tabuleiro','D&D Fantasy Roleplaying Game Essentials Kit'],
+                            [9921300602214,'Jogos de Cartas e Colecionaveis','Pokémon! Sword & Shield Evolving Skies Sleeved Booster Pack'],
+                            [2757533699180,'Puzzles','Puzzle Mordillo Impossible'],
+                            [3654965036310,'Jogos Educativos e Didáticos','Logic Farm'] ,
+                            [2796302894290,'Comics','Deadpool - Preto, Branco & Sangue'],
+                            [6389373905722,'Graphic Novels','Economix'],
+                            [1384349735413,'Manga','SPY X FAMILY - VOL 1'],
+                            [1384349935513,'BD Franco-Belga','Asterix Il Alcaforron'],
+                          ]
 
 
 data_ivm = [
@@ -146,14 +157,16 @@ def tem_outra(f):
     message = messages[relation_name.tem_outra.value]
     for super_categoria in data_tem_outra:
         for categoria in data_tem_outra[super_categoria]:
-            f.write(message + " ('" + str(super_categoria) + '\' , \'' +  str(categoria)  + "')\n")
+            f.write(message + " ('" + str(super_categoria) + '\' , \'' \ 
+            +  str(categoria)  + "')\n")
 
 
 def produto(f):
     add_empty_line(f,1)
     message = messages[relation_name.produto.value]
     for produto in data_produto:
-           f.write(message + " (" + str(produto[0]) + ' , \'' +  str(produto[1])  +   '\' , \'' + str(produto[2]) + "')\n")
+           f.write(message + " (" + str(produto[0]) + ' , \'' +  str(produto[1])  +   '\' , \'' \ 
+           + str(produto[2]) + "')\n")
 
 
 def tem_categoria(f):
@@ -174,14 +187,16 @@ def ponto_de_retalho(f):
     add_empty_line(f,1)    
     message = messages[relation_name.ponto_de_retalho.value]
     for local in data_ponto_de_retalho:
-         f.write(message + " ('" + str(local[0]) + '\' , \'' +  str(local[1])  +   '\' , \'' + str(local[2]) + "')\n")
+         f.write(message + " ('" + str(local[0]) + '\' , \'' +  str(local[1])  +   '\' , \''\
+          + str(local[2]) + "')\n")
 
         
 def instalada_em(f):
     add_empty_line(f,1)
     message = messages[relation_name.instalada_em.value]
     for info in range(12):
-        f.write(message + " (" + str(data_ivm[info][0]) + ' , \'' +  str(data_ivm[info][1]) +   '\' , \'' + str(data_ponto_de_retalho[info][0]) + "')\n")
+        f.write(message + " (" + str(data_ivm[info][0]) + ' , \'' +  str(data_ivm[info][1]) +   '\' , \''\
+         + str(data_ponto_de_retalho[info][0]) + "')\n")
 
 
 def prateleira(f):
@@ -196,8 +211,10 @@ def planograma(f):
     add_empty_line(f,1)
     message = messages[relation_name.planograma.value]
     for num in range(12):
-        f.write(message + " (" + str(data_produto_simplified[num][0]) + ' , ' +  str(num) +   ' , \'' + str(data_produto_simplified[num][1]) + '\' , \'' \
-        + str(data_ivm[num][1]) +  '\' , ' + str(data_planograma[num][0]) + ' , ' + str(data_planograma[num][1]) + ' ,\'' + str(data_planograma[num][2]) + "')\n")
+        f.write(message + " (" + str(data_produto_simplified[num][0]) + ' , ' +  str(num) +   ' , \'' \
+        + str(data_produto_simplified[num][1]) + '\' , \'' \
+        + str(data_ivm[num][1]) +  '\' , ' + str(data_planograma[num][0]) + ' , ' + str(data_planograma[num][1]) \
+        + ' ,\'' + str(data_planograma[num][2]) + "')\n")
    
 
 def retalhista(f):
@@ -211,7 +228,8 @@ def responsavel_por(f):
     add_empty_line(f,1)
     message = messages[relation_name.responsavel_por.value]
     for info in range(12):
-        f.write(message + " ('" + str(data_categoria_simples[info]) + '\' , ' +  str(data_retalhista[info][0]) +   ' , ' +  str(data_ivm[info][0]) + ' , \''  \
+        f.write(message + " ('" + str(data_categoria_simples[info]) + '\' , ' +  str(data_retalhista[info][0]) \
+         +   ' , ' +  str(data_ivm[info][0]) + ' , \''  \
         +  str(data_ivm[info][1]) + "')\n")
 
 
@@ -219,8 +237,10 @@ def evento_reposicao(f):
     add_empty_line(f,1)
     message = messages[relation_name.evento_reposicao.value]
     for info in range(12):
-         f.write(message + " (" + str(data_produto_simplified[info][0]) + ' , ' +  str(info) +   ' , \'' + str(data_produto_simplified[info][1]) + '\' , \'' \
-        + str(data_ivm[info][1]) +  '\' , \'' + str(data_timestamps[info]) + '\' , ' + str(data_planograma[info][1]) + ' , ' + str(data_retalhista[info][0])  + ")\n")
+         f.write(message + " (" + str(data_produto_simplified[info][0]) + ' , ' +  str(info) +   ' , \'' \
+         + str(data_produto_simplified[info][1]) + '\' , \'' \ 
+         + str(data_ivm[info][1]) +  '\' , \'' + str(data_timestamps[info]) + '\' , ' \
+         + str(data_planograma[info][1]) + ' , ' + str(data_retalhista[info][0])  + ")\n")
 
 def add_empty_line(f,mode):
     if mode == 1:
