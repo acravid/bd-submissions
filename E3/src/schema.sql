@@ -15,7 +15,6 @@ DROP TABLE IF EXISTS retalhista;
 DROP TABLE IF EXISTS responsavel_por;
 DROP TABLE IF EXISTS evento_reposicao;
 
-
 CREATE TABLE categoria(
     nome VARCHAR(150) NOT NULL,
     PRIMARY KEY(nome)
@@ -81,10 +80,10 @@ CREATE TABLE ponto_de_retalho(
 CREATE TABLE instalada_em(
     num_serie INT NOT NULL CHECK (num_serie >= 0),
     fabricante VARCHAR(150) NOT NULL,
-    loc VARCHAR(150) NOT NULL,
+    "local" VARCHAR(150) NOT NULL,
     PRIMARY KEY (num_serie,fabricante),
     FOREIGN KEY (num_serie,fabricante) REFERENCES IVM(num_serie,fabricante),
-    FOREIGN KEY (loc)  REFERENCES ponto_de_retalho(nome)
+    FOREIGN KEY ("local")  REFERENCES ponto_de_retalho(nome)
 );
 
 CREATE TABLE prateleira(
