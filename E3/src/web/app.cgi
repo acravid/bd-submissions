@@ -417,20 +417,21 @@ def delete_simple_category():
     query = 'SELECT nro, num_serie, fabricante FROM prateleira WHERE nome=%s'
     cursor.execute(query, (name,))
 
-    # category is linked to a shelf
+    # category is linked to shelves
     if cursor.rowcount > 0:
-      shelf = cursor.fetchall()[0]
-      query = 'DELETE FROM evento_reposicao WHERE nro = %s AND num_serie = %s AND fabricante = %s'
-      data = (shelf[0], shelf[1], shelf[2],)
-      cursor.execute(query, data)
+      shelves = cursor.fetchall()
+      for shelf in shelves:
+        query = 'DELETE FROM evento_reposicao WHERE nro = %s AND num_serie = %s AND fabricante = %s'
+        data = (shelf[0], shelf[1], shelf[2],)
+        cursor.execute(query, data)
 
-      query = 'DELETE FROM planograma WHERE nro = %s AND num_serie = %s AND fabricante = %s'
-      data = (shelf[0], shelf[1], shelf[2],)
-      cursor.execute(query, data)
+        query = 'DELETE FROM planograma WHERE nro = %s AND num_serie = %s AND fabricante = %s'
+        data = (shelf[0], shelf[1], shelf[2],)
+        cursor.execute(query, data)
 
-      query = 'DELETE FROM prateleira WHERE nro = %s AND num_serie = %s AND fabricante = %s'
-      data = (shelf[0], shelf[1], shelf[2],)
-      cursor.execute(query, data)
+        query = 'DELETE FROM prateleira WHERE nro = %s AND num_serie = %s AND fabricante = %s'
+        data = (shelf[0], shelf[1], shelf[2],)
+        cursor.execute(query, data)
 
     
     query = 'SELECT ean FROM produto WHERE cat=%s'
@@ -453,6 +454,11 @@ def delete_simple_category():
         query = 'DELETE FROM tem_categoria WHERE ean = %s'
         data = (p[0],)
         cursor.execute(query, data)
+
+      for p in products:
+        query = 'DELETE FROM produto WHERE ean = %s'
+        data = (p[0],)
+        cursor.execute(query, data)
     
 
     query = 'DELETE FROM tem_outra WHERE categoria = %s'
@@ -465,6 +471,9 @@ def delete_simple_category():
     cursor.execute(query, (name,))
 
     query = 'DELETE FROM categoria_simples WHERE nome=%s'
+    cursor.execute(query, (name,))
+
+    query = 'DELETE FROM categoria WHERE nome=%s'
     cursor.execute(query, (name,))
 
     return redirect(url_for('list_simple_categories'))
