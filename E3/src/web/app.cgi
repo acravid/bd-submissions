@@ -403,8 +403,8 @@ def delete_category():
     dbConn.close()
 """
 
-"""
-@app.route('/simple_categories/delete', methods=["POST"]) # incomplete
+
+@app.route('/simple_categories/delete', methods=["POST"])
 def delete_simple_category():
   dbConn=None
   cursor=None
@@ -414,84 +414,66 @@ def delete_simple_category():
 
     name = request.form["name"]
 
+    query = 'SELECT nro, num_serie, fabricante FROM prateleira WHERE nome=%s'
+    cursor.execute(query, (name,))
+
+    # category is linked to a shelf
+    if cursor.rowcount > 0:
+      shelf = cursor.fetchall()[0]
+      query = 'DELETE FROM evento_reposicao WHERE nro = %s AND num_serie = %s AND fabricante = %s'
+      data = (shelf[0], shelf[1], shelf[2],)
+      cursor.execute(query, data)
+
+      query = 'DELETE FROM planograma WHERE nro = %s AND num_serie = %s AND fabricante = %s'
+      data = (shelf[0], shelf[1], shelf[2],)
+      cursor.execute(query, data)
+
+      query = 'DELETE FROM prateleira WHERE nro = %s AND num_serie = %s AND fabricante = %s'
+      data = (shelf[0], shelf[1], shelf[2],)
+      cursor.execute(query, data)
+
+    
     query = 'SELECT ean FROM produto WHERE cat=%s'
     cursor.execute(query, (name,))
-    products = cursor.fetchall()
 
-    if len(products) > 0:
-      query = 'SELECT nro, num_serie, fabricante FROM planograma WHERE ean = %s'
-      data = (ean,)
-      cursor.execute(query, data)
-      planograms = cursor.fetchall()
-
-      for p in planograms:
-        query = 'DELETE FROM evento_reposicao WHERE ean = %s OR (nro = %s AND num_serie = %s AND fabricante = %s)'
-        data = (ean, p[0], p[1], p[2],)
+    # there are products with that category as their primary category
+    if cursor.rowcount > 0:
+      products = cursor.fetchall()
+      for p in products:
+        query = 'DELETE FROM evento_reposicao WHERE ean = %s'
+        data = (p[0],)
         cursor.execute(query, data)
 
-        query = 'DELETE FROM planograma WHERE ean = %s OR (nro = %s AND num_serie = %s AND fabricante = %s)'
-        data = (ean, p[0], p[1], p[2],)
+      for p in products:
+        query = 'DELETE FROM planograma WHERE ean = %s'
+        data = (p[0],)
         cursor.execute(query, data)
-
-        query = 'SELECT nome_cat FROM produto WHERE ean = %s'
-        data = (ean,)
-        cursor.execute(query, data)
-        category = cursor.fetchall()[0]
-
-        query = 'DELETE FROM prateleira WHERE nome = %s'
-        data = (category,)
-        cursor.execute(query, data)
-
+      
+      for p in products:
         query = 'DELETE FROM tem_categoria WHERE ean = %s'
-        data = (ean,)
+        data = (p[0],)
         cursor.execute(query, data)
+    
 
-        query = 'DELETE FROM produto WHERE ean = %s'
-        data = (ean,)
-        cursor.execute(query, data)
-
-
-    query = 'DELETE FROM tem_outra WHERE categoria=%s'
-    cursor.execute(queries[0], (name,))
-
-    query = 'DELETE FROM responsavel_por WHERE nome_cat=%s'
-    cursor.execute(queries[0], (name,))
+    query = 'DELETE FROM tem_outra WHERE categoria = %s'
+    cursor.execute(query, (name,))
+    
+    query = 'DELETE FROM tem_categoria WHERE nome = %s'
+    cursor.execute(query, (name,))
+      
+    query = 'DELETE FROM responsavel_por WHERE nome_cat = %s'
+    cursor.execute(query, (name,))
 
     query = 'DELETE FROM categoria_simples WHERE nome=%s'
-    cursor.execute(queries[0], (name,))
+    cursor.execute(query, (name,))
 
-
-    if(len(results) > 0):
-      for prateleira in results:
-      queries = ['DELETE FROM evento_reposicao WHERE nro=%s AND num_serie=%s AND fabricante=%s']
-      data = (prateleira[0], prateleira[1], prateleira[2],)
-      cursor.execute(queries[0], data)
-
-      queries = ['DELETE FROM responsavel_por WHERE nome_cat=%s OR (num_serie=%s AND nro=%s AND fabricante=%s)']
-      data = (name, prateleira[1], prateleira[0], prateleira[2],)
-      cursor.execute(queries[0], data)
-
-      queries = ['DELETE FROM planograma WHERE nro=%s AND num_serie=%s AND fabricante=%s']
-      data = (prateleira[0], prateleira[1], prateleira[2],)
-      cursor.execute(queries[0], data)
-
-      queries = ['DELETE FROM planograma WHERE nro=%s AND num_serie=%s AND fabricante=%s']
-      data = (prateleira[0], prateleira[1], prateleira[2],)
-      cursor.execute(queries[0], data)
-
-    queries += ['DELETE FROM responsavel_por WHERE tin=%s',
-               'DELETE FROM retalhista WHERE tin=%s'
-               ]
-    data=(balance, account_number)
-    cursor.execute(query,data)
-    return query
+    return redirect(url_for('list_simple_categories'))
   except Exception as e:
     return str(e) 
   finally:
     dbConn.commit()
     cursor.close()
     dbConn.close()
-"""
 
 @app.route('/retailers/delete', methods=["POST"])
 def delete_retailer():
