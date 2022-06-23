@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>List categories - Flask</title>
+</head>
+<a href="simple_categories/new">
+  <button>
+    Criar nova categoria simples
+  </button>
+</a>
+<a href="subcategories/new">
+  <button>
+    Criar nova subcategoria
+  </button>
+</a>
+<body style="padding:20px">
+  {% if cursor %}
+    <table border="2px">
+      <thead>
+        <tr>
+          <th>Nome da Categoria</th>
+          <th>Gestão</th>
+        </tr>
+      </thead>
+      <tbody>      
+        {% for record in cursor %}
+          <tr>
+            <td>{{ record[0] }}</td>
+            <td><form method="post" action="simple_categories/delete" class="inline">
+              <input type="hidden" name="name" value="{{ record[0] }}">
+                <button>
+                  Remover
+                </button>
+            </form>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p> Erro: ao obter dados da base de dados!</p>
+  {% endif %}
+</body>
+</html>

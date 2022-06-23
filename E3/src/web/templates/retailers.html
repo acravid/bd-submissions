@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>List Retailers - Flask</title>
+</head>
+<a href="retailers/new">
+  <button>
+    Criar novo retalhista
+  </button>
+</a>
+<body style="padding:20px">
+  {% if cursor %}
+    <table border="2px">
+      <thead>
+        <tr>
+          <th>TIN</th>
+          <th>Nome do Retalhista</th>
+          <th>Gestão</th>
+        </tr>
+      </thead>
+      <tbody>      
+        {% for record in cursor %}
+          <tr>
+            <td>{{ record[0] }}</td>
+            <td>{{ record[1] }}</td>
+            <td>
+              <form method="post" action="retailers/delete" class="inline">
+                <input type="hidden" name="tin" value="{{ record[0] }}">
+                  <button>
+                    Remover
+                  </button>
+              </form></td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p> Erro: ao obter dados da base de dados!</p>
+  {% endif %}
+</body>
+</html>

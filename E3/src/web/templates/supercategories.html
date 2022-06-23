@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>List supercategories - Flask</title>
+</head>
+<a href="supercategories/new">
+    <button>
+      Criar nova supercategoria
+    </button>
+  </a>
+<a href="subcategories/new">
+    <button>
+      Criar nova subcategoria
+    </button>
+  </a>
+<body style="padding:20px">
+  {% if cursor %}
+    <table border="2px">
+      <thead>
+        <tr>
+          <th>Nome da Supercategoria</th>
+          <th>Gestão</th>
+        </tr>
+      </thead>
+      <tbody>      
+        {% for record in cursor %}
+          <tr>
+            <td>{{ record[0] }}</td>
+            <td><form method="post" action="all_lvl_categories" class="inline">
+              <input type="hidden" name="name" value="{{ record[0] }}">
+                <button>
+                  Listar subcategorias
+                </button>
+            </form>
+        </td>
+            <td><form method="post" action="categories/delete" class="inline">
+              <input type="hidden" name="name" value="{{ record[0] }}">
+                <button>
+                  Remover
+                </button>
+            </form>
+        </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p> Erro: ao obter dados da base de dados!</p>
+  {% endif %}
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>New Category - Flask</title>
+</head>
+<div>
+    <h1>Insira o nome da nova categoria simples</h1>
+    <form action="execute_new" method="post">
+        <label>Nome</label>
+        <input type="text" name="name"/><br>
+        <label>Categoria mãe: </label>
+        <select name="supercategory" id = 'categories' >
+          <option label="(sem categoria mãe)" value=""></option>
+          {% for cat in categories %}
+            <option name="{{cat}}"  value="{{cat[0]}}">{{cat[0]}}</option>
+          {% endfor %}
+          </select><br>
+          <input type="submit"/>
+    </form>
+</div>
+</html>

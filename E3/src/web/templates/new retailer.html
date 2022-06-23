@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>New Retailer - Flask</title>
+</head>
+<div>
+    <h1>Insira os dados do novo retalhista</h1>
+    <form action="execute_new" method="post">
+        <label>TIN</label>
+        <input type="text" name="tin"/><br>
+        <label>Nome</label>
+        <input type="text" name="name"/><br>
+        <label>Categoria pela qual é responsável:</label>
+        <select name="category" id = 'categories' >
+          {% for cat in categories %}
+              <option name="{{cat}}"  value="{{cat[0]}}">{{cat[0]}}</option>
+          {% endfor %}
+          </select><br>
+        <label>IVM pela qual é responsável:</label>
+        <select name="ivm" id = 'ivm' >
+          {% for ivm in ivms %}
+              <option name="{{ivm}}"  value="{{ivm[0]}}">{{ivm[0]}}</option>
+          {% endfor %}
+          </select><br>
+
+        <input type="submit"/>
+    </form>
+</div>
+</html>

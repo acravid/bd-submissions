@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Menu - Flask</title>
+</head>
+<body style="padding:20px">
+    <table border="2px">
+      <thead>
+        <tr>
+          <th>Opções</th>
+        </tr>
+      </thead>
+      <tbody>      
+          <tr>
+            <td><form method="get" action="ivms" class="inline">
+                  <input type="hidden">
+                    <button>
+                      Listar IVMs
+                    </button>
+                </form>
+                <form method="get" action="supercategories" class="inline">
+                    <input type="hidden">
+                      <button>
+                        Listar super categorias
+                      </button>
+                </form>
+                <form method="get" action="simple_categories" class="inline">
+                    <input type="hidden">
+                      <button>
+                        Listar categorias simples
+                      </button>
+                </form>
+                <form method="get" action="retailers" class="inline">
+                    <input type="hidden">
+                      <button>
+                        Listar retalhistas
+                      </button>
+                </form>
+          </tr>
+      </tbody>
+    </table>
+</body>
+</html>

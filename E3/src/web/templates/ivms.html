@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>List IVMs - Flask</title>
+</head>
+<body style="padding:20px">
+  {% if cursor %}
+    <table border="2px">
+      <thead>
+        <tr>
+          <th>Número de Série</th>
+          <th>Fábricante</th>
+          <th>Gestão</th>
+        </tr>
+      </thead>
+      <tbody>      
+        {% for record in cursor %}
+          <tr>
+            <td>{{ record[0] }}</td>
+            <td>{{ record[1] }}</td>
+            <td><form method="post" action="repo_events" class="inline">
+                  <input type="hidden" name="ivm_serial_no" value="{{ record[0] }}">
+                    <button>
+                      Listar Eventos de Reposição
+                    </button>
+                </form>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p> Erro: ao obter dados da base de dados!</p>
+  {% endif %}
+</body>
+</html>
