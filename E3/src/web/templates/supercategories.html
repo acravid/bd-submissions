@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>List supercategories - Flask</title>
+  <title>Supercategorias</title>
 </head>
+<h1>Lista de supercategorias</h1>
 <a href="supercategories/new">
     <button>
       Criar nova supercategoria
-    </button>
-  </a>
+    </button></a>
 <a href="subcategories/new">
     <button>
       Criar nova subcategoria
     </button>
-  </a>
+  </a><br><br>
 <body style="padding:20px">
   {% if cursor %}
     <table border="2px">
@@ -33,7 +33,7 @@
                 </button>
             </form>
         </td>
-            <td><form method="post" action="categories/delete" class="inline">
+            <td><form method="post" action="supercategories/delete" class="inline">
               <input type="hidden" name="name" value="{{ record[0] }}">
                 <button>
                   Remover

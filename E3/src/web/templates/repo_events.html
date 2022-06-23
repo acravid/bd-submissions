@@ -1,20 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>List Reposition Events - Flask</title>
+  <title>Eventos de Reposição: IVM {{ivm}}</title>
 </head>
+<h1>Eventos de Reposição da IVM com número de série {{ivm}}</h1>
 <body style="padding:20px">
   {% if cursor %}
     <table border="2px">
       <thead>
         <tr>
-          <th>EAN</th>
-          <th>Número de Prateleira</th>
-          <th>Fabricante</th>
-          <th>Instante</th>
-          <th>Unidades</th>
-          <th>TIN</th>
           <th>Categoria</th>
+          <th>Unidades</th>
         </tr>
       </thead>
       <tbody>      
@@ -22,11 +18,6 @@
           <tr>
             <td>{{ record[0] }}</td>
             <td>{{ record[1] }}</td>
-            <td>{{ record[2] }}</td>
-            <td>{{ record[3] }}</td>
-            <td>{{ record[4] }}</td>
-            <td>{{ record[5] }}</td>
-            <td>{{ record[6] }}</td>
           </tr>
         {% endfor %}
       </tbody>

@@ -81,7 +81,7 @@ def list_all_lvl_categories():
                     "FROM tem_outra sub "
                     "JOIN rec AS sup ON sup.categoria = sub.super_categoria "
                     ") SELECT * FROM rec")
-             
+
     cursor.execute(query, (super_category,))
 
     return render_template("all_lvl_categories.html", cursor=cursor, params=request.args, super_category=super_category)
@@ -132,7 +132,7 @@ def list_repo_events():
     cursor = dbConn.cursor(cursor_factory = psycopg2.extras.DictCursor)
 
     ivm = request.form["ivm_serial_no"]
-    query = ("SELECT ean, nro, fabricante, instante, unidades, tin, nome "
+    query = ("SELECT nome, unidades "
              "FROM evento_reposicao "
              "NATURAL JOIN planograma "
              "NATURAL JOIN "
@@ -141,7 +141,7 @@ def list_repo_events():
     data = (ivm,)
     cursor.execute(query, data)
 
-    return render_template("repo_events.html", cursor=cursor, params=request.args)
+    return render_template("repo_events.html", cursor=cursor, params=request.args, ivm=ivm)
   except Exception as e:
     return str(e) 
   finally:
@@ -349,60 +349,87 @@ def do_new_retailer():
 #                                Deleting                                     #
 ###############################################################################
 
-"""
-@app.route('/categories/delete', methods=["POST"]) # incomplete
+@app.route('/supercategories/delete', methods=["POST"])
 def delete_category():
   dbConn=None
   cursor=None
   try:
     dbConn = psycopg2.connect(DB_CONNECTION_STRING)
     cursor = dbConn.cursor(cursor_factory = psycopg2.extras.DictCursor)
-    balance=request.form["balance"]
-    name=request.form["name"] 
 
+    name = request.form["name"]
 
-    query = ("WITH RECURSIVE rec AS (" # similar to listing all lvls
-                    "SELECT super_categoria, categoria "
-                    "FROM tem_outra "
-                    "WHERE super_categoria = %s "
-                    "UNION ALL "
-                    "SELECT sub.super_categoria, sub.categoria "
-                    "FROM tem_outra sub "
-                    "JOIN rec AS sup ON sup.categoria = sub.super_categoria "
-                    ") SELECT categoria FROM rec")
-             
-    cursor.execute(query, (name,))
-    children = cursor.fetchall()
-
-    # Deleting parent link
-    query = "DELETE FROM tem_outra WHERE categoria = %s"
+    query = 'DELETE FROM tem_outra WHERE categoria=%s'
     cursor.execute(query, (name,))
 
-    # Deleting itself
-    query = "DELETE FROM responsavel_por WHERE nome_cat = %s"
+    query = 'DELETE FROM tem_outra WHERE super_categoria=%s'
     cursor.execute(query, (name,))
 
-    query = "SELECT FROM prateleira WHERE nome = %s"
+    query = 'SELECT nro, num_serie, fabricante FROM prateleira WHERE nome=%s'
     cursor.execute(query, (name,))
 
-    if(not len(cursor.fetchall() > 0): # planogramas com a categoria, temos que apaga-los
+    # supercategory is linked to shelves
+    if cursor.rowcount > 0:
+      shelves = cursor.fetchall()
+      for shelf in shelves:
+        query = 'DELETE FROM evento_reposicao WHERE nro = %s AND num_serie = %s AND fabricante = %s'
+        data = (shelf[0], shelf[1], shelf[2],)
+        cursor.execute(query, data)
 
+        query = 'DELETE FROM planograma WHERE nro = %s AND num_serie = %s AND fabricante = %s'
+        data = (shelf[0], shelf[1], shelf[2],)
+        cursor.execute(query, data)
 
+        query = 'DELETE FROM prateleira WHERE nro = %s AND num_serie = %s AND fabricante = %s'
+        data = (shelf[0], shelf[1], shelf[2],)
+        cursor.execute(query, data)
 
-    for cat in children
+    query = 'SELECT ean FROM produto WHERE cat=%s'
+    cursor.execute(query, (name,))
 
-    query = 'UPDATE account SET balance=%s WHERE account_number = %s'
-    data=(balance, account_number)
-    cursor.execute(query,data)
-    return query
+    # there are products with that supercategory as their primary category
+    if cursor.rowcount > 0:
+      products = cursor.fetchall()
+      for p in products:
+        query = 'DELETE FROM evento_reposicao WHERE ean = %s'
+        data = (p[0],)
+        cursor.execute(query, data)
+
+      for p in products:
+        query = 'DELETE FROM planograma WHERE ean = %s'
+        data = (p[0],)
+        cursor.execute(query, data)
+      
+      for p in products:
+        query = 'DELETE FROM tem_categoria WHERE ean = %s'
+        data = (p[0],)
+        cursor.execute(query, data)
+
+      for p in products:
+        query = 'DELETE FROM produto WHERE ean = %s'
+        data = (p[0],)
+        cursor.execute(query, data)
+
+    query = 'DELETE FROM tem_categoria WHERE nome = %s'
+    cursor.execute(query, (name,))
+      
+    query = 'DELETE FROM responsavel_por WHERE nome_cat = %s'
+    cursor.execute(query, (name,))
+
+    query = 'DELETE FROM super_categoria WHERE nome=%s'
+    cursor.execute(query, (name,))
+
+    query = 'DELETE FROM categoria WHERE nome=%s'
+    cursor.execute(query, (name,))
+
+    return redirect(url_for('list_supercategories'))
   except Exception as e:
+    dbConn.rollback()
     return str(e) 
   finally:
     dbConn.commit()
     cursor.close()
     dbConn.close()
-"""
-
 
 @app.route('/simple_categories/delete', methods=["POST"])
 def delete_simple_category():
@@ -433,7 +460,6 @@ def delete_simple_category():
         data = (shelf[0], shelf[1], shelf[2],)
         cursor.execute(query, data)
 
-    
     query = 'SELECT ean FROM produto WHERE cat=%s'
     cursor.execute(query, (name,))
 
@@ -459,7 +485,6 @@ def delete_simple_category():
         query = 'DELETE FROM produto WHERE ean = %s'
         data = (p[0],)
         cursor.execute(query, data)
-    
 
     query = 'DELETE FROM tem_outra WHERE categoria = %s'
     cursor.execute(query, (name,))
@@ -510,4 +535,3 @@ def delete_retailer():
     dbConn.close()
 
 CGIHandler().run(app)
-
