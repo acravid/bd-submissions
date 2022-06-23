@@ -469,6 +469,7 @@ def delete_simple_category():
 
     return redirect(url_for('list_simple_categories'))
   except Exception as e:
+    dbConn.rollback()
     return str(e) 
   finally:
     dbConn.commit()
