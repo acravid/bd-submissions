@@ -251,7 +251,6 @@ def planograma(f):
     for num in range(16):
 
         if num > 11:
-            print("SAME VALUE -->", SAME_VALUE)
             f.write((message + " (" + str(data_produto_simplified[num][0]) + ' , '
                                 + str(num) + ' , '
                                 + str(data_prateleira_number[SAME_VALUE])  + ' , \''                    
