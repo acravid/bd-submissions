@@ -255,6 +255,11 @@ def evento_reposicao(f):
                                 + str(data_planograma[info][1]) + ' , '
                                 + str(data_retalhista[info][0]) + ");\n"))
 
+def schema(f):
+    s = open("schema.sql", "r")
+    f.write(s.read())
+    s.close()
+
 def add_empty_line(f,mode):
     if mode == 1:
         f.write("\n")
@@ -265,6 +270,8 @@ def add_empty_line(f,mode):
 
 def main():
     f = open("populate.sql", "w+")
+    schema(f)
+    f.write("\n-- 2 - dados de teste\n")
     categoria(f)
     categoria_simples(f)
     super_categoria(f)
