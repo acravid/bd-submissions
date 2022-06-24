@@ -251,11 +251,11 @@ def planograma(f):
     for num in range(16):
 
         if num > 11:
-            equal = randrange(10)
+            print("SAME VALUE -->", SAME_VALUE)
             f.write((message + " (" + str(data_produto_simplified[num][0]) + ' , '
                                 + str(num) + ' , '
-                                + str(data_prateleira_number[SAME_VALUE]) + ', \''
-                                #+ str(data_produto_simplified[num][1]) + '\' , \''
+                                + str(data_prateleira_number[SAME_VALUE])  + ' , \''
+                                + str(data_produto_simplified[num][1]) + '\' , \''
                                 + str(data_ivm[SAME_VALUE][1]) +  '\' , '
                                 + str(data_planograma[SAME_VALUE][0]) + ' , '
                                 + str(data_planograma[randrange(12)][1]) + ' ,\''
@@ -288,17 +288,23 @@ def responsavel_por(f):
                                  + str(data_retalhista[randrange(12)][0]) + ' , '
                                  + str(data_ivm[info][0]) + ' , \''
                                  + str(data_ivm[info][1]) + "');\n"))
- 
+
+
+
+   
+                                 
+    
 
 def evento_reposicao(f):
     add_empty_line(f,1)
     message = messages[relation_name.evento_reposicao.value]
     for info in range(16):
         if info > 11:
+            print("SAME VALUE -->", SAME_VALUE)
             f.write((message + " (" + str(data_produto_simplified[info][0]) + ' , '
                                 + str(info) + ' , '
-                                + str(info) + ' , \''
-                                + str(data_ivm[randrange(10)][1]) + '\' , \''
+                                + str(data_prateleira_number[SAME_VALUE])  + ' , \''
+                                + str(data_produto_simplified[info][1]) + '\' , \''
                                 + str(data_timestamps[info]) + '\' , '
                                 + str(data_planograma[randrange(10)][1]) + ' , '
                                 + str(data_retalhista[randrange(10)][0]) + ");\n"))
