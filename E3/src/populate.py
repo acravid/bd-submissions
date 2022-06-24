@@ -16,7 +16,7 @@ data_categoria = [
                     'Bilheteria de Concertos','Concerto Jazz', 'Rock in Rio',
                     'Pastelaria', 'Pastelaria Tradicional Portuguesa', 'Pastelaria Russa',
                     'Jogos','Jogos de Tabuleiro','Jogos de Cartas e Colecionaveis','Puzzles','Jogos Educativos e Didáticos',
-                    'BD E MANGA','Comics','Graphic Novels','Manga','BD Franco-Belga'
+                    'BD E MANGA','Comics','Graphic Novels','Manga','BD Franco-Belga',
                     'Vegetais','Batatas', 'Batatas Redondas', 'Batatas Ovais','Batatas Redondas Portuguesas','Batatas Redondas Espanholas',
                     'Batatas Ovais Portuguesas','Batatas Ovais Espanholas'
 
