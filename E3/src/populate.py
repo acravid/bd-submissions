@@ -104,7 +104,8 @@ data_produto_simplified = [
 data_ivm = [
             [0,'Labsa'],[1,'Demodia'],[2,'Pitho'],[3,'Hotan'],[4,'CucaTest'],
             [5,'CookieLabs'],[6,'Eten'],[7,'JazzFul'],[8,'Jubex'],[9,'Harumaki'],
-            [10,'YorokobiNoKonpyUta'], [11,'Jojorata']
+            [10,'YorokobiNoKonpyUta'], [11,'Jojorata'],[12,'Jalata'],[13,'Ideki'],
+            [14,'Milkos'],[15,'Fanitur']
             ]
 
 data_ponto_de_retalho = [
@@ -283,18 +284,11 @@ def responsavel_por(f):
     add_empty_line(f,1)
     message = messages[relation_name.responsavel_por.value]
     for info in range(16):
-        if info > 11:
-            equal = randrange(10)
-            f.write((message + " ('" + str(data_categoria_simples[info]) + '\' , '
+        f.write((message + " ('" + str(data_categoria_simples[info]) + '\' , '
                                  + str(data_retalhista[randrange(12)][0]) + ' , '
-                                 + str(data_ivm[equal][0]) + ' , \''
-                                 + str(data_ivm[equal][1]) + "');\n"))
-        else:
-            f.write((message + " ('" + str(data_categoria_simples[info]) + '\' , '
-                                 + str(data_retalhista[info][0]) + ' , '
                                  + str(data_ivm[info][0]) + ' , \''
                                  + str(data_ivm[info][1]) + "');\n"))
-
+ 
 
 def evento_reposicao(f):
     add_empty_line(f,1)
