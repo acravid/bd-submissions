@@ -304,7 +304,7 @@ def evento_reposicao(f):
             f.write((message + " (" + str(data_produto_simplified[info][0]) + ' , '
                                 + str(info) + ' , '
                                 + str(data_prateleira_number[SAME_VALUE])  + ' , \''
-                                + str(data_produto_simplified[info][1]) + '\' , \''
+                                + str(data_ivm[SAME_VALUE][1]) + '\' , \''
                                 + str(data_timestamps[info]) + '\' , '
                                 + str(data_planograma[randrange(10)][1]) + ' , '
                                 + str(data_retalhista[randrange(10)][0]) + ");\n"))
