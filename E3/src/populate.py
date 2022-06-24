@@ -1,6 +1,9 @@
 from enum import Enum
 from random import randrange
 
+
+SAME_VALUE = randrange(10)
+
 messages =  [
             'INSERT INTO categoria VALUES','INSERT INTO categoria_simples VALUES',
             'INSERT INTO super_categoria VALUES','INSERT INTO tem_outra VALUES',
@@ -229,8 +232,8 @@ def prateleira(f):
 
             equal = randrange(10)
             f.write((message + " (" + str(num) + ' , '
-                                + str(data_ivm[equal][0]) + ' , \''
-                                + str(data_ivm[equal][1]) + '\' , '
+                                + str(data_ivm[SAME_VALUE][0]) + ' , \''
+                                + str(data_ivm[SAME_VALUE][1]) + '\' , '
                                 + str(data_prateleira_altura[randrange(10)]) +  ' , \''
                                 + str(data_categoria_simples[num]) + "');\n"))
         else:
@@ -250,10 +253,10 @@ def planograma(f):
             equal = randrange(10)
             f.write((message + " (" + str(data_produto_simplified[num][0]) + ' , '
                                 + str(num) + ' , '
-                                + str(data_prateleira_number[num]) + ', \''
+                                + str(data_prateleira_number[SAME_VALUE]) + ', \''
                                 #+ str(data_produto_simplified[num][1]) + '\' , \''
-                                + str(data_ivm[equal][1]) +  '\' , '
-                                + str(data_planograma[equal][0]) + ' , '
+                                + str(data_ivm[SAME_VALUE][1]) +  '\' , '
+                                + str(data_planograma[SAME_VALUE][0]) + ' , '
                                 + str(data_planograma[randrange(12)][1]) + ' ,\''
                                 + str(data_planograma[randrange(12)][2]) + "');\n"))
             
