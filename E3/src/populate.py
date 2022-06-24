@@ -39,8 +39,8 @@ data_tem_outra = {
                     'Pastelaria':['Pastelaria Tradicional Portuguesa', 'Pastelaria Russa'],
                     'Jogos': ['Jogos de Tabuleiro','Jogos de Cartas e Colecionaveis','Puzzles','Jogos Educativos e Didáticos'],
                     'BD E MANGA':['Comics','Graphic Novels','Manga','BD Franco-Belga'],
-                    'Vegetais': ['Batata'],
-                    'Batata': ['Batatas Redondas','Batatas Ovais'],
+                    'Vegetais': ['Batatas'],
+                    'Batatas': ['Batatas Redondas','Batatas Ovais'],
                     'Batatas Ovais': ['Batatas Ovais Portuguesas','Batatas Ovais Espanholas'],
                     'Batatas Redondas': ['Batatas Redondas Portuguesas','Batatas Redondas Espanholas']
                 }
