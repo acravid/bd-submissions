@@ -226,9 +226,11 @@ def prateleira(f):
     message = messages[relation_name.prateleira.value]
     for num in data_prateleira_number:
         if num > 11:
-             f.write((message + " (" + str(num) + ' , '
-                                + str(data_ivm[randrange(10)][0]) + ' , \''
-                                + str(data_ivm[randrange(10)][1]) + '\' , '
+
+            equal = randrange(10)
+            f.write((message + " (" + str(num) + ' , '
+                                + str(data_ivm[equal][0]) + ' , \''
+                                + str(data_ivm[equal][1]) + '\' , '
                                 + str(data_prateleira_altura[randrange(10)]) +  ' , \''
                                 + str(data_categoria_simples[num]) + "');\n"))
         else:
