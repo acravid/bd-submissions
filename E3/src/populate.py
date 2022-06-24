@@ -282,8 +282,14 @@ def responsavel_por(f):
     add_empty_line(f,1)
     message = messages[relation_name.responsavel_por.value]
     for info in range(16):
-        f.write((message + " ('" + str(data_categoria_simples[info]) + '\' , '
-                                 + str(data_retalhista[randrange(12)][0]) + ' , '
+        if info == 0:
+            f.write((message + " ('" + str(data_categoria[0]) + '\' , '
+                                 + str(data_retalhista[0][0]) + ' , '
+                                 + str(data_ivm[info][0]) + ' , \''
+                                 + str(data_ivm[info][1]) + "');\n"))
+        else:              
+            f.write((message + " ('" + str(data_categoria[info]) + '\' , '
+                                 + str(data_retalhista[randrange(1,12)][0]) + ' , '
                                  + str(data_ivm[info][0]) + ' , \''
                                  + str(data_ivm[info][1]) + "');\n"))
 
