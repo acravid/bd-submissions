@@ -1,4 +1,5 @@
 from enum import Enum
+from random import randrange
 
 messages =  [
             'INSERT INTO categoria VALUES','INSERT INTO categoria_simples VALUES',
@@ -16,16 +17,20 @@ data_categoria = [
                     'Pastelaria', 'Pastelaria Tradicional Portuguesa', 'Pastelaria Russa',
                     'Jogos','Jogos de Tabuleiro','Jogos de Cartas e Colecionaveis','Puzzles','Jogos Educativos e Didáticos',
                     'BD E MANGA','Comics','Graphic Novels','Manga','BD Franco-Belga'
+                    'Vegetais','Batatas', 'Batatas Redondas', 'Batatas Ovais','Batatas Redondas Portuguesas','Batatas Redondas Espanholas',
+                    'Batatas Ovais Portuguesas','Batatas Ovais Espanholas'
+
                 ]
 
 
-data_super_categoria = ['Bilheteria de Concertos','Pastelaria','Jogos','BD E MANGA']
+data_super_categoria = ['Bilheteria de Concertos','Pastelaria','Jogos','BD E MANGA','Vegetais','Batatas','Batatas Redondas','Batatas Ovais']
 
 
 data_categoria_simples = [
                             'Concerto Jazz','Rock in Rio','Pastelaria Tradicional Portuguesa', 'Pastelaria Russa',
                             'Jogos de Tabuleiro','Jogos de Cartas e Colecionaveis','Puzzles','Jogos Educativos e Didáticos',
-                            'Comics','Graphic Novels','Manga','BD Franco-Belga'
+                            'Comics','Graphic Novels','Manga','BD Franco-Belga','Batatas Redondas Portuguesas','Batatas Redondas Espanholas',
+                            'Batatas Ovais Portuguesas','Batatas Ovais Espanholas'
                         ]
 
 
@@ -33,7 +38,11 @@ data_tem_outra = {
                     'Bilheteria de Concertos': ['Concerto Jazz','Rock in Rio'],
                     'Pastelaria':['Pastelaria Tradicional Portuguesa', 'Pastelaria Russa'],
                     'Jogos': ['Jogos de Tabuleiro','Jogos de Cartas e Colecionaveis','Puzzles','Jogos Educativos e Didáticos'],
-                    'BD E MANGA':['Comics','Graphic Novels','Manga','BD Franco-Belga']
+                    'BD E MANGA':['Comics','Graphic Novels','Manga','BD Franco-Belga'],
+                    'Vegetais': ['Batata'],
+                    'Batata': ['Batatas Redondas','Batatas Ovais'],
+                    'Batatas Ovais': ['Batatas Ovais Portuguesas','Batatas Ovais Espanholas'],
+                    'Batatas Redondas': ['Batatas Redondas Portuguesas','Batatas Redondas Espanholas']
                 }
 
 
@@ -60,7 +69,12 @@ data_produto = [
                 [1384349735413,'Manga','SPY X FAMILY - VOL 1'],
                 [1384349735513,'Manga','SPY X FAMILY - VOL 2'],
                 [1384349935513,'BD Franco-Belga','Asterix Il Alcaforron'],
-                [1384349765513,'BD Franco-Belga','Asterix I Alcaforron']
+                [1384349765513,'BD Franco-Belga','Asterix I Alcaforron'],
+                [8819012883703,'Batatas Redondas Portuguesas','Redodinhas Chips PT'],
+                [5783688071158,'Batatas Redondas Espanholas', 'Redoditas Chips ES'],
+                [5649355897352,'Batatas Ovais Portuguesas','Ovaldinhas Chips PT'],
+                [6351441592787,'Batatas Ovais Espanholas','Ovaladitas Chips ES']
+
                 ]
 
 data_produto_simplified = [
@@ -76,6 +90,11 @@ data_produto_simplified = [
                             [6389373905722,'Graphic Novels','Economix'],
                             [1384349735413,'Manga','SPY X FAMILY - VOL 1'],
                             [1384349935513,'BD Franco-Belga','Asterix Il Alcaforron'],
+                            [8819012883703,'Batatas Redondas Portuguesas','Redodinhas Chips PT'],
+                            [5783688071158,'Batatas Redondas Espanholas', 'Redoditas Chips ES'],
+                            [5649355897352,'Batatas Ovais Portuguesas','Ovaldinhas Chips PT'],
+                            [6351441592787,'Batatas Ovais Espanholas','Ovaladitas Chips ES']
+ 
                             ]
 
 
@@ -99,9 +118,9 @@ data_ponto_de_retalho = [
                         ['Lavos','Coimbra','Figueira da Foz,'],
                         ['Marinha das Ondas','Coimbra','Figueira da Foz,']
                         ]
-data_prateleira_number = [el for el in range(12)]
-data_prateleira_altura = [el for el in range(10,34,2)]
-data_planograma = [[el + 2 ,el + 5,'weowewdw'+str(el)] for el in range(12)]
+data_prateleira_number = [el for el in range(16)]
+data_prateleira_altura = [el + 3 for el in range(16)]
+data_planograma = [[el + 2 ,el + 5,'weowewdw'+str(el)] for el in range(16)]
 data_retalhista = [ 
                     [123562845,'Gaspar Abreu'],[123564845,'Bruna Cunha'], [123562846,'Salomé Fernandes'],  [123562849,'Cristiano Carvalho'],
                     [123562847,'Inês Macedo'],[123562841,'Diogo Guerreiro'],[123562843,'Leonor Silva'],[153562845,'Laura Andrade'],  
@@ -111,7 +130,8 @@ data_retalhista = [
 data_timestamps = [
                     '2022-01-08 04:05:06','2022-04-08 14:05:36','2022-05-08 16:15:08','2022-06-03 20:05:06','2022-07-08 20:45:16',
                     '2022-08-08 12:15:00','2022-02-08 16:49:26','2022-02-02 20:00:16','2022-03-08 10:05:16','2022-07-08 14:45:16',
-                    '2022-04-08 20:35:16','2022-07-08 13:45:16'
+                    '2022-04-08 20:35:16','2022-07-08 13:45:16','2021-07-08 11:45:16','2021-08-08 13:45:16','2022-01-08 22:35:17',
+                    '2022-12-12 22:45:17',
                     ]
 
 class relation_name(Enum):
@@ -205,18 +225,38 @@ def prateleira(f):
     add_empty_line(f,1)
     message = messages[relation_name.prateleira.value]
     for num in data_prateleira_number:
-        f.write((message + " (" + str(num) + ' , '
+        if num > 11:
+             f.write((message + " (" + str(num) + ' , '
+                                + str(data_ivm[randrange(10)][0]) + ' , \''
+                                + str(data_ivm[randrange(10)][1]) + '\' , '
+                                + str(data_prateleira_altura[randrange(10)]) +  ' , \''
+                                + str(data_categoria_simples[num]) + "');\n"))
+        else:
+            f.write((message + " (" + str(num) + ' , '
                                 + str(data_ivm[num][0]) + ' , \''
                                 + str(data_ivm[num][1]) + '\' , '
-                                + str(data_prateleira_altura[num]) +  ' , \''
+                                + str(data_prateleira_altura[randrange(10)]) +  ' , \''
                                 + str(data_categoria_simples[num]) + "');\n"))
 
 
 def planograma(f):
     add_empty_line(f,1)
     message = messages[relation_name.planograma.value]
-    for num in range(12):
-        f.write((message + " (" + str(data_produto_simplified[num][0]) + ' , '
+    for num in range(16):
+
+        if num > 11:
+            equal = randrange(10)
+            f.write((message + " (" + str(data_produto_simplified[num][0]) + ' , '
+                                + str(num) + ' , '
+                                + str(data_prateleira_number[num]) + ', \''
+                                #+ str(data_produto_simplified[num][1]) + '\' , \''
+                                + str(data_ivm[equal][1]) +  '\' , '
+                                + str(data_planograma[equal][0]) + ' , '
+                                + str(data_planograma[randrange(12)][1]) + ' ,\''
+                                + str(data_planograma[randrange(12)][2]) + "');\n"))
+            
+        else:
+            f.write((message + " (" + str(data_produto_simplified[num][0]) + ' , '
                                 + str(num) + ' , '
                                 + str(data_prateleira_number[num]) + ', \''
                                 #+ str(data_produto_simplified[num][1]) + '\' , \''
@@ -224,6 +264,7 @@ def planograma(f):
                                 + str(data_planograma[num][0]) + ' , '
                                 + str(data_planograma[num][1]) + ' ,\''
                                 + str(data_planograma[num][2]) + "');\n"))
+
 
 def retalhista(f):
     add_empty_line(f,1)
@@ -236,8 +277,15 @@ def retalhista(f):
 def responsavel_por(f):
     add_empty_line(f,1)
     message = messages[relation_name.responsavel_por.value]
-    for info in range(12):
-        f.write((message + " ('" + str(data_categoria_simples[info]) + '\' , '
+    for info in range(16):
+        if info > 11:
+            equal = randrange(10)
+            f.write((message + " ('" + str(data_categoria_simples[info]) + '\' , '
+                                 + str(data_retalhista[randrange(12)][0]) + ' , '
+                                 + str(data_ivm[equal][0]) + ' , \''
+                                 + str(data_ivm[equal][1]) + "');\n"))
+        else:
+            f.write((message + " ('" + str(data_categoria_simples[info]) + '\' , '
                                  + str(data_retalhista[info][0]) + ' , '
                                  + str(data_ivm[info][0]) + ' , \''
                                  + str(data_ivm[info][1]) + "');\n"))
@@ -246,8 +294,17 @@ def responsavel_por(f):
 def evento_reposicao(f):
     add_empty_line(f,1)
     message = messages[relation_name.evento_reposicao.value]
-    for info in range(12):
-        f.write((message + " (" + str(data_produto_simplified[info][0]) + ' , '
+    for info in range(16):
+        if info > 11:
+            f.write((message + " (" + str(data_produto_simplified[info][0]) + ' , '
+                                + str(info) + ' , '
+                                + str(info) + ' , \''
+                                + str(data_ivm[randrange(10)][1]) + '\' , \''
+                                + str(data_timestamps[info]) + '\' , '
+                                + str(data_planograma[randrange(10)][1]) + ' , '
+                                + str(data_retalhista[randrange(10)][0]) + ");\n"))
+        else:
+            f.write((message + " (" + str(data_produto_simplified[info][0]) + ' , '
                                 + str(info) + ' , '
                                 + str(info) + ' , \''
                                 + str(data_ivm[info][1]) + '\' , \''
