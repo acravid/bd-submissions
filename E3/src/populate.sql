@@ -1,19 +1,19 @@
 -- 1 - esquema de base de dados
 
-DROP TABLE IF EXISTS categoria;
+DROP TABLE IF EXISTS evento_reposicao;
+DROP TABLE IF EXISTS responsavel_por;
+DROP TABLE IF EXISTS retalhista;
+DROP TABLE IF EXISTS planograma;
+DROP TABLE IF EXISTS instalada_em;
+DROP TABLE IF EXISTS ponto_de_retalho;
+DROP TABLE IF EXISTS prateleira;
+DROP TABLE IF EXISTS IVM;
+DROP TABLE IF EXISTS tem_outra;
 DROP TABLE IF EXISTS categoria_simples;
 DROP TABLE IF EXISTS super_categoria;
-DROP TABLE IF EXISTS tem_outra;
-DROP TABLE IF EXISTS produto;
 DROP TABLE IF EXISTS tem_categoria;
-DROP TABLE IF EXISTS IVM;
-DROP TABLE IF EXISTS ponto_de_retalho;
-DROP TABLE IF EXISTS instalada_em;
-DROP TABLE IF EXISTS prateleira;
-DROP TABLE IF EXISTS planograma;
-DROP TABLE IF EXISTS retalhista;
-DROP TABLE IF EXISTS responsavel_por;
-DROP TABLE IF EXISTS evento_reposicao;
+DROP TABLE IF EXISTS produto;
+DROP TABLE IF EXISTS categoria;
 
 CREATE TABLE categoria(
     nome VARCHAR(150) NOT NULL,
