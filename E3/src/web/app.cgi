@@ -81,7 +81,7 @@ def list_all_lvl_categories():
                     "FROM tem_outra sub "
                     "JOIN rec AS sup ON sup.categoria = sub.super_categoria "
                     ") SELECT * FROM rec")
-
+             
     cursor.execute(query, (super_category,))
 
     return render_template("all_lvl_categories.html", cursor=cursor, params=request.args, super_category=super_category)
@@ -345,6 +345,58 @@ def do_new_retailer():
     cursor.close()
     dbConn.close()
 
+
+@app.route('/retailers/add_responsibility', methods = ["POST"])
+def new_retailer_responsiblity():
+  dbConn=None
+  cursor=None
+  try:
+    dbConn = psycopg2.connect(DB_CONNECTION_STRING)
+    cursor = dbConn.cursor(cursor_factory = psycopg2.extras.DictCursor)
+    tin = request.form["tin"]
+    query = "SELECT nome FROM categoria"
+    cursor.execute(query)
+    categories = cursor.fetchall()
+    if not len(categories) > 0:
+      raise Exception("Não há categorias para responsabilizar a um retalhista")
+
+    query = "SELECT num_serie FROM ivm WHERE num_serie NOT IN (SELECT num_serie FROM responsavel_por)"
+    cursor.execute(query)
+    ivms = cursor.fetchall()
+    if not len(ivms) > 0:
+      raise Exception("Não há ivms para responsabilizar a um retalhista")
+
+    return render_template("new retailer responsibility.html", params=request.args, categories=categories, ivms=ivms, tin=tin)
+  except Exception as e:
+    return str(e) 
+
+
+@app.route('/retailers/add_responsibility/execute', methods=["POST"])
+def do_new_retailer_responsibility():
+  dbConn=None
+  cursor=None
+  try:
+    dbConn = psycopg2.connect(DB_CONNECTION_STRING)
+    cursor = dbConn.cursor(cursor_factory = psycopg2.extras.DictCursor)
+    tin = request.form["tin"]
+    cat = request.form["category"]
+    ivm = request.form.get("ivm", type=int)
+    query = 'SELECT fabricante FROM ivm WHERE num_serie = %s'
+    cursor.execute(query, (ivm,))
+
+    fabricante = cursor.fetchall()[0][0]
+    query = 'INSERT INTO responsavel_por VALUES (%s, %s, %s, %s)'
+    data = (cat, tin, ivm, fabricante,)
+    cursor.execute(query, data)
+    return redirect(url_for('list_retailers'))
+  except Exception as e:
+    dbConn.rollback()
+    return str(e) 
+  finally:
+    dbConn.commit()
+    cursor.close()
+    dbConn.close()
+
 ###############################################################################
 #                                Deleting                                     #
 ###############################################################################
@@ -535,3 +587,4 @@ def delete_retailer():
     dbConn.close()
 
 CGIHandler().run(app)
+

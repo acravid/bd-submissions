@@ -29,6 +29,11 @@
                   <button>
                     Remover
                   </button>
+              </form>  <form method="post" action="retailers/add_responsibility" class="inline">
+                <input type="hidden" name="tin" value="{{ record[0] }}">
+                  <button>
+                    Adicionar responsabilidade
+                  </button>
               </form></td>
           </tr>
         {% endfor %}

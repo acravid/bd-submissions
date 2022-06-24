@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Nova responsabilidade para retalhista {{tin}}</title>
+</head>
+<div>
+    <h1>Insira os dados</h1>
+    <form action="add_responsibility/execute" method="post">
+      <label>TIN:</label>
+      <select name="tin" id = 'categories' >
+            <option name="{{ tin }}"  value="{{tin}}">{{tin}}</option>
+        </select><br>
+        <label>Categoria pela qual é responsável:</label>
+        <select name="category" id = 'categories' >
+          {% for cat in categories %}
+              <option name="{{cat}}"  value="{{cat[0]}}">{{cat[0]}}</option>
+          {% endfor %}
+          </select><br>
+        <label>IVM pela qual é responsável:</label>
+        <select name="ivm" id = 'ivm' >
+          {% for ivm in ivms %}
+              <option name="{{ivm}}"  value="{{ivm[0]}}">{{ivm[0]}}</option>
+          {% endfor %}
+          </select><br>
+
+        <input type="submit"/>
+    </form>
+</div>
+</html>
