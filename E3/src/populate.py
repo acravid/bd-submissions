@@ -254,8 +254,7 @@ def planograma(f):
             print("SAME VALUE -->", SAME_VALUE)
             f.write((message + " (" + str(data_produto_simplified[num][0]) + ' , '
                                 + str(num) + ' , '
-                                + str(data_prateleira_number[SAME_VALUE])  + ' , \''
-                                + str(data_produto_simplified[num][1]) + '\' , \''
+                                + str(data_prateleira_number[SAME_VALUE])  + ' , \''                    
                                 + str(data_ivm[SAME_VALUE][1]) +  '\' , '
                                 + str(data_planograma[SAME_VALUE][0]) + ' , '
                                 + str(data_planograma[randrange(12)][1]) + ' ,\''
