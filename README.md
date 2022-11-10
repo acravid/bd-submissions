@@ -11,9 +11,8 @@ Lastly, we had to employ the knowledge acquired so far to create a database writ
 
 ### Contributors
 
-```
-Allan Fernandes - 97281
-Luis Guevara    - 95621
-Martim Correia  - 97326
-
-```
+| Number | Name              | 
+|--------|-------------------|
+| 97281  | Allan Fernandes   |
+| 95621  | Luis Guevara      |
+| 97326  | Martim Correia    | 
